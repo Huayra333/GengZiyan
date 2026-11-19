@@ -1,0 +1,424 @@
+/* ══════════════════════════════════════════════════════
+   SITE CONTENT — 耿子严 / Ziyan Geng
+   ──────────────────────────────────────────────────────
+   1. SITE      → 名字、邮箱
+   2. WORKS     → 作品网格
+   3. BTS       → 镜头之外：现场、机位、剪辑台
+   4. HOBBIES   → 四个小方块
+   5. I18N      → 全部文案，EN + 中文
+   ══════════════════════════════════════════════════════ */
+
+const SITE = {
+  first: "Ziyan",
+  last:  "Geng",
+  nameCN: "耿子严",
+  email: "1807926008@qq.com",
+  year: 2026
+};
+
+/* ─────────────────────────────────────────────
+   WORKS
+   type : film | ai
+   span : 12 栏中占几栏      ar : 宽高比
+   poster / video : 素材路径，留空则显示生成式占位图
+   ───────────────────────────────────────────── */
+const WORKS = [
+  {
+    type: "film", span: 7, ar: 1.5,
+    poster: "assets/img/chenggen.jpg",
+    preview: "assets/vid/preview/chenggen.mp4",
+    full:    "assets/vid/full/chenggen.mp4",
+    dur:     "8:52",
+    seed: 12, art: "dust", tone: "bone",
+    title: { en: "Sparks at the Wall", zh: "城根烟火" },
+    sub: { en: "A documentary feature on the alleys left at the foot of the Shang city wall.",
+           zh: "电视专题片：商城遗址城墙根下的市井生活。" },
+    role: { en: "Shot · hosted · edited", zh: "拍摄 · 出镜 · 剪辑" },
+    note: { en: "Documentary · 2025 · 8:52", zh: "纪录片 · 2025 · 8 分 52 秒" }
+  },
+  {
+    type: "film", span: 5, ar: 1.07,
+    poster: "assets/img/jinsheng.jpg",
+    preview: "assets/vid/preview/jinsheng.mp4",
+    full:    "assets/vid/full/jinsheng.mp4",
+    dur:     "4:07",
+    seed: 27, art: "dust", tone: "cyan",
+    title: { en: "Hush", zh: "噤声" },
+    sub: { en: "A horror short about a corridor that keeps returning you to the same door.",
+           zh: "恐怖短片：一条总把你送回同一扇门的走廊。" },
+    role: { en: "Director · lead", zh: "导演 · 主演" },
+    note: { en: "Fiction · 2025 · 4:07", zh: "剧情短片 · 2025 · 4 分 07 秒" },
+    warn: {
+      chip: { en: "Horror · jump scares", zh: "恐怖片 · 含惊吓" },
+      k:    { en: "Content note", zh: "内容提示" },
+      t:    { en: "This one is a horror film.", zh: "这一部是恐怖片。" },
+      d:    { en: "Hush runs 4 minutes. It has sudden loud stingers, dark corridors and jump-scare timing. There is no gore, but it is built to startle you. If you would rather not, go back — nothing else on this page will jump out.",
+              zh: "《噤声》全长 4 分 07 秒，包含突然的惊吓音效、黑暗走廊和跳跃式惊吓镜头。没有血腥画面，但它就是用来吓人的。如果此刻不想看，直接返回即可——这一页的其他作品都不会突然吓人。" },
+      short:{ en: "Sudden stingers and dark corridors. No gore — but it is built to startle.",
+              zh: "突然的惊吓音效与黑暗画面；没有血腥，但它就是用来吓人的。" },
+      go:   { en: "I understand — play the film", zh: "我知道了，播放" },
+      back: { en: "Back to the works", zh: "先不看，返回" }
+    }
+  },
+  {
+    type: "ai", span: 6, ar: 1.35,
+    poster: "assets/img/ainews.jpg",
+    preview: "assets/vid/preview/ainews.mp4",
+    full:    "assets/vid/full/ainews.mp4",
+    dur:     "1:12",
+    seed: 41, art: "bloom", tone: "ember",
+    title: { en: "From Smoke to Silence", zh: "从烟火到寂静" },
+    sub: { en: "A pixel-art AI news story: a ten-yuan buffet stand, and what the comments did to it.",
+           zh: "AI 新闻故事：一家十元自助摊位，和评论区对它做的事。" },
+    role: { en: "Script · prompts · edit", zh: "脚本 · 提示词 · 剪辑" },
+    note: { en: "AI short · 2026 · 1:12", zh: "AI 短片 · 2026 · 1 分 12 秒" },
+    ai: {
+      line: { en: "Shot list → prompts → generated takes → cut",
+              zh: "分镜 → 提示词 → 生成 → 选片 → 剪辑" },
+      d: { en: "Every frame comes out of a video model. I wrote the shot list, wrote and re-wrote the prompts, steered each take, picked the ones that held together and cut it to sound.",
+           zh: "每一帧都由视频模型生成。分镜是我写的，提示词反复改到模型给出想要的镜头，再挑出能连起来的片段，配上声音剪成片。" }
+    }
+  },
+  {
+    type: "ai", span: 3, ar: 0.70,
+    poster: "assets/img/aifigure.jpg",
+    preview: "assets/vid/preview/aifigure.mp4",
+    full:    "assets/vid/full/aifigure.mp4",
+    dur:     "2:28",
+    seed: 58, art: "grid", tone: "violet",
+    title: { en: "One Small Step", zh: "小人物闯关" },
+    sub: { en: "A stick figure with a red scarf runs through a train yard, orbit, and a boss fight.",
+           zh: "一个系红领巾的火柴人，跑过车站、太空和一场 Boss 战。" },
+    role: { en: "Concept · prompts · edit", zh: "设定 · 提示词 · 剪辑" },
+    note: { en: "AI animation · 2026 · 2:28", zh: "AI 动画 · 2026 · 2 分 28 秒" },
+    ai: {
+      line: { en: "Character → prompts → takes → cut",
+              zh: "角色设定 → 提示词 → 逐镜生成 → 剪辑" },
+      d: { en: "A stick figure invented in text, then kept consistent shot after shot through prompts: the same scarf, the same gait, the same camera. Generated motion, edited rhythm, all of it steered by hand.",
+           zh: "火柴人先用文字设定出来，再靠提示词一镜一镜保持同一个人：同一条红领巾、同一个跑姿、同一套机位。动作是生成的，节奏是剪出来的，方向全程由我控制。" }
+    }
+  },
+  {
+    type: "film", span: 3, ar: 0.70,
+    poster: "assets/img/shuoche.jpg",
+    preview: "assets/vid/preview/shuoche.mp4",
+    full:    "assets/vid/full/shuoche.mp4",
+    dur:     "2:25",
+    seed: 63, art: "dust", tone: "steel",
+    title: { en: "Car Talk", zh: "说车视频" },
+    sub: { en: "An early one-man car video: one car, one street, shot, hosted and cut on my own.",
+           zh: "早期单机位说车短片：一台车、一条街，自己拍、自己出镜、自己剪。" },
+    role: { en: "Shot · hosted · edited", zh: "拍摄 · 出镜 · 剪辑" },
+    note: { en: "Vertical video · 2024 · 2:25", zh: "竖屏短视频 · 2024 · 2 分 25 秒" }
+  }
+];
+
+/* ─────────────────────────────────────────────
+   OFF SCREEN — 幕后：机位、现场、剪辑台
+   kind : video | photo      span : 12 栏中占几栏
+   ───────────────────────────────────────────── */
+const BTS = [
+  {
+    kind: "video", span: 7, ar: "16 / 9",
+    full: "assets/vid/bts/onset.mp4",
+    img:  "assets/img/bts/onset.jpg",
+    dur: "0:06",
+    title: { en: "On location", zh: "拍摄现场" },
+    sub:   { en: "Sparks at the Wall: the shop owner at the foot of the city wall",
+             zh: "《城根烟火》：城墙根下小卖部门口的店主" },
+    note:  { en: "Zhengzhou · 2025 · sound on", zh: "郑州 · 2025 · 可开声音" },
+    cap:   { en: "He stopped performing on the third take.", zh: "拍到第三遍，他才不再「演」。" }
+  },
+  {
+    kind: "photo", span: 5, ar: "5 / 4", pos: "50% 36%",
+    img: "assets/img/bts/setup.jpg",
+    title: { en: "The setup", zh: "机位" },
+    sub:   { en: "One body, a tripod, a reflector held by hand",
+             zh: "一台机器、三脚架、一块手举的反光板" },
+    note:  { en: "1/500 · f/11 · ISO 640 · Zhengzhou, 2025",
+             zh: "1/500 · f/11 · ISO 640 · 郑州，2025" },
+    cap:   { en: "The monitor reads 1/500, f/11, ISO 640 — midday, no cloud.",
+             zh: "监视器上写着 1/500、f/11、ISO 640 —— 正午，没有云。" }
+  },
+  {
+    kind: "photo", span: 7, ar: "3 / 2",
+    img: "assets/img/bts/timeline.jpg",
+    title: { en: "The cut", zh: "剪辑台" },
+    sub:   { en: "The car video, 2:23 on the timeline", zh: "说车视频，时间线上 2 分 23 秒" },
+    note:  { en: "4–6 s per clip, audio pulled apart underneath",
+             zh: "每段 4 到 6 秒，声音在下面单独拆轨" },
+    cap:   { en: "Every clip is four to six seconds. The sound is pulled apart underneath.",
+             zh: "每段 4 到 6 秒；声音在下面被拆成一条条轨。" }
+  }
+];
+
+/* the note that sits beside the timeline */
+const BTS_NOTE = {
+  k: { en: "How it gets made", zh: "怎么拍出来的" },
+  t: { en: "No crew, no lighting kit", zh: "没有剧组，也没有灯" },
+  d: { en: "One body on a tripod, a reflector held by hand, and as many takes as it took for the person in front of the lens to forget it was there. Everything else happens at night, on a timeline.",
+       zh: "一台机器架在三脚架上，一块手举的反光板，和拍到镜头前的人忘记它在为止的遍数。剩下的都发生在夜里、在时间线上。" }
+};
+
+/* ─────────────────────────────────────────────
+   HOBBIES
+   ───────────────────────────────────────────── */
+const HOBBIES = [
+  { t: { en: "Cars", zh: "汽车" },
+    d: { en: "I can trace most faults to a part. Friends ask me what to buy; I take that more seriously than I should.", zh: "多数故障能自己查到具体部件。朋友让我参谋选车，我比该有的程度更认真。" } },
+  { t: { en: "Formula 1", zh: "一级方程式" },
+    d: { en: "Watched for strategy, not overtakes. A few dozen laps of the same circuit on a simulator taught me patience.", zh: "看的是策略不是超车。模拟器上同一条赛道跑过几十圈，练的是耐心。" } },
+  { t: { en: "Voice", zh: "声音" },
+    d: { en: "Three years of breath and articulation drills. Now used to put a human voice on machine-made pictures.", zh: "三年气息与吐字训练。现在用来给机器生成的画面配一条人声。" } },
+  { t: { en: "Cutting", zh: "剪辑" },
+    d: { en: "I cut to music first, then go back and fix the logic. It is the only way I can feel the rhythm.", zh: "先按音乐剪，再回头修逻辑。这是我唯一能感觉到节奏的办法。" } }
+];
+
+/* ─────────────────────────────────────────────
+   MARQUEE
+   ───────────────────────────────────────────── */
+const MARQUEE = [
+  "DOCUMENTARY", "GENERATIVE IMAGE", "HOSTING",
+  "有声语言", "AI VIDEO", "SHORT FORM", "影像叙事", "PROMPT AS SHOT LIST"
+];
+
+/* ─────────────────────────────────────────────
+   INTERFACE COPY · EN / 中文
+   ───────────────────────────────────────────── */
+const I18N = {
+  en: {
+    "site.name": "Ziyan Geng",
+    "nav.mark": "Ziyan Geng",
+    "nav.works": "Works",
+    "nav.about": "About",
+    "nav.contact": "Contact",
+
+    "hero.kicker": "Portfolio 2026 — MA application, BNU–HKBU UIC",
+    "hero.first": "Ziyan",
+    "hero.last": "Geng",
+    "hero.role": "Communication · AI & Digital Media",
+    "hero.lede": "Trained to speak. Now learning what happens when the machine can speak too.",
+    "hero.based": "Based in",
+    "hero.city": "Zhengzhou, China",
+    "hero.status": "Applying for",
+    "hero.value": "MA Communication · 2027",
+    "hero.scroll": "Scroll",
+
+    "s1.tag": "Statement",
+    "s1.l1": "The voice was",
+    "s1.l2": "never",
+    "s1.l3": "the whole story.",
+    "s1.p1": "Three years of broadcasting training teaches you where a sentence should land — the breath before it, the weight at the end. It is also why I hear immediately when a generated voice gets the rhythm wrong.",
+    "s1.p2": "Then I started making things with models: a pixel-art news story about a ten-yuan buffet stand, a stick figure running through a train yard and into orbit, a proposal for an interactive drama the audience votes on. The same lesson arrived three times — the tool is fast, the judgement is slow.",
+    "s1.p3": "I am applying to Communication (AI and Digital Media) to put a frame around that instinct: how images and voices persuade, who gets to speak, and what a host is for once a host can be synthetic.",
+
+    "w.tag": "Selected Works",
+    "w.items": "pieces",
+    "w.title": "SELECTED",
+    "w.title2": "works",
+    "f.all": "All",
+    "f.film": "Film & Documentary",
+    "f.ai": "AI & Generative",
+    "w.view": "Play",
+    "w.full": "full film",
+    "w.aiTag": "AI · generated",
+    "w.aiHow": "How it was made",
+    "w.noteTag": "Content note",
+    "b.zoom": "expand",
+
+    "f2.tag": "Case Study",
+    "f2.kicker": "A programme that doesn't exist yet",
+    "f2.title": "Life, Restart",
+    "f2.desc": "A pitch for what may be China's first AI-assisted interactive drama: a real actor lives a life, the audience votes at every fork, and the model generates the branch that wins. One episode a week, five to eight minutes.",
+    "f2.s1t": "The gap",
+    "f2.s1d": "Short drama is a 150-billion-yuan market with one limit — you can only watch. Interactive stories fix that, but shooting every branch is unaffordable. Generated video is what makes it affordable.",
+    "f2.s2t": "The shape",
+    "f2.s2d": "Five beats in five minutes: recap, advance, a real choice, the host's analysis, the vote. Twelve choice points make one season.",
+    "f2.s3t": "The host",
+    "f2.s3d": "A model can generate the branch. It cannot hold a room. The host reads the vote, argues both sides and owns the recommendation — the one job that cannot be outsourced.",
+    "f2.m1": "Programme proposal",
+    "f2.m2": "10 pages",
+    "f2.docT": "Read the full proposal",
+    "f2.docS": "Every page, in English or Chinese — market, format, host, business model, episode-one script, risk",
+    "r.kicker": "Life, Restart — programme proposal · {n} pages",
+    "r.dl": "Download PDF (EN)",
+    "r.dlZh": "Download original PDF (ZH)",
+    "r.close": "Close",
+    "r.page": "Page",
+    "f2.posterTag": "AI interactive drama · proposal",
+    "f2.posterCN": "人生重启局",
+    "f2.posterSub": "Your choice can change someone's life.",
+    "f2.vote": "Audience vote · episode 03",
+    "f2.v1": "She quits",
+    "f2.v2": "She stays",
+    "f2.st1": "choice points",
+    "f2.st2": "per episode",
+    "f2.st3": "platforms",
+
+    "o.tag": "Off Screen",
+    "o.title": "OFF",
+    "o.title2": "screen",
+    "o.lede": "What the finished films leave out: how the camera got there, how long the light was waited for, and where the night went.",
+    "o.sub": "When nobody is filming",
+
+    "a.tag": "About",
+    "a.t1": "The person",
+    "a.t2": "behind",
+    "a.t3": "the voice",
+    "a.cap": "Zhengzhou, 2026",
+    "a.p1": "I study Broadcasting and Hosting at Henan University of Technology — three years of breath control, script analysis, and standing in front of a lens until it stops being frightening.",
+    "a.p2": "The camera led to editing, and editing led to directing: a horror short in a corridor that keeps returning you to the same door, a documentary feature about the alleys left at the foot of the Shang city wall.",
+    "a.p3": "Then generative tools arrived and the question changed. If a model can write the script, cut the footage and voice the narration, what is left for the person who trained to do exactly that? I think the answer is judgement — and I want two years to work out what that means.",
+    "a.skills": "Capabilities",
+    "a.sk1": "On-camera hosting & voice-over",
+    "a.sk2": "Documentary shooting & editing",
+    "a.sk3": "Premiere Pro · After Effects",
+    "a.sk4": "AI video & image generation",
+    "a.sk5": "Prompt design & storyboarding",
+    "a.sk6": "Python (basics)",
+    "a.sk7": "Pitch writing & programme planning",
+    "a.sk8": "Mandarin · Grade II-A certified",
+    "a.path": "Path",
+    "a.tl1t": "Henan University of Technology",
+    "a.tl1d": "BA Broadcasting & Hosting Art · minor in Finance · GPA 3.67",
+    "a.tl2t": "Hong Kong Ta Kung Wen Wei Media Group",
+    "a.tl2d": "Newsroom intern — interviews, copy, filming.",
+    "a.tl3t": "Beijing Tairan Ruoqing Culture",
+    "a.tl3d": "Film & media assistant — set support, research, promo material.",
+    "a.tl4t": "Henan Dramatic Arts Centre",
+    "a.tl4d": "Host & stage assistant — hosted two public events, recorded narration.",
+    "a.tl5t": "Henan Yuju Opera Theatre",
+    "a.tl5d": "Marketing intern — new media operations and tour support.",
+    "a.tl6t": "Henan Urban Science Society",
+    "a.tl6d": "Public speaker — civil defence and heritage campaigns.",
+
+    "c.tag": "Contact",
+    "c.kicker": "Open to collaboration, and to arguments about whether a machine can hold a room.",
+    "c.edu": "Education",
+    "c.edu1": "Henan University of Technology",
+    "c.edu2": "BA Broadcasting & Hosting Art · 2023–27",
+    "c.based": "Based in",
+    "c.now": "Currently",
+    "c.nowv": "Preparing an MA application, 2027 entry.",
+    "c.built": "Designed & built by me",
+    "c.top": "Back to top ↑"
+  },
+
+  zh: {
+    "site.name": "耿子严",
+    "nav.mark": "耿子严",
+    "nav.works": "作品",
+    "nav.about": "关于",
+    "nav.contact": "联系",
+
+    "hero.kicker": "作品集 2026 — 申请 北师香港浸会大学",
+    "hero.first": "耿子严",
+    "hero.last": "",
+    "hero.role": "传理学 · 人工智能与数码媒体",
+    "hero.lede": "学了四年说话。现在想弄明白，当机器也会说话之后，人该站在哪里。",
+    "hero.based": "所在地",
+    "hero.city": "中国 郑州",
+    "hero.status": "申请方向",
+    "hero.value": "传理学文学硕士 · 2027 入学",
+    "hero.scroll": "下滑",
+
+    "s1.tag": "自述",
+    "s1.l1": "声音，",
+    "s1.l2": "从来不是",
+    "s1.l3": "故事的全部。",
+    "s1.p1": "三年的播音训练教我一件事：一句话该落在哪里——前面那口气，后面那个重量。所以机器生成的声音一旦节奏错了，我立刻就能听出来。",
+    "s1.p2": "后来我开始用模型做东西：一个关于十元自助摊位的像素风新闻故事，一个跑过车站和太空的火柴人，一份让观众投票决定剧情的互动剧提案。同一个道理来了三次——工具很快，判断很慢。",
+    "s1.p3": "我申请传理学（人工智能与数码媒体），是想给这种直觉一个框架：影像和声音如何说服人，谁有资格开口，以及当主持人也可以是合成的时候，主持人还剩下什么。",
+
+    "w.tag": "精选作品",
+    "w.items": "件",
+    "w.title": "精选",
+    "w.title2": "作品",
+    "f.all": "全部",
+    "f.film": "影像",
+    "f.ai": "AI 与生成",
+    "w.view": "播放",
+    "w.full": "全片",
+    "w.aiTag": "AI · 生成",
+    "w.aiHow": "制作方式",
+    "w.noteTag": "内容提示",
+    "b.zoom": "放大",
+
+    "f2.tag": "项目拆解",
+    "f2.kicker": "一个还不存在的节目",
+    "f2.title": "人生重启局",
+    "f2.desc": "一份节目提案：真人演一条人生，观众在每个岔路口投票，模型生成得票最高的那条分支。每周更新一期，单期五到八分钟。",
+    "f2.s1t": "缺口",
+    "f2.s1d": "微短剧是千亿级市场，但有一个限制——你只能看。互动叙事能解决它，可是每条分支都实拍的成本不可承受，生成式视频让成本降了下来。",
+    "f2.s2t": "结构",
+    "f2.s2d": "五分钟五个环节：剧情回顾、推进、一个真实的选择、主持人的分析、观众投票。十二个选择节点构成一季。",
+    "f2.s3t": "主持人的位置",
+    "f2.s3d": "模型能生成分支，但撑不住一个场子。主持人读票、替两边说话、为推荐负责——这是唯一无法外包的部分。",
+    "f2.m1": "节目提案",
+    "f2.m2": "10 页",
+    "f2.docT": "阅读完整提案",
+    "f2.docS": "整份文档，中英双语——市场、形式、主持人、商业模式、第一期剧本、风险",
+    "r.kicker": "人生重启局 — 节目提案 · {n} 页",
+    "r.dl": "下载英文版 PDF",
+    "r.dlZh": "下载原版 PDF",
+    "r.close": "关闭",
+    "r.page": "第",
+    "f2.posterTag": "AI 互动连续剧 · 提案",
+    "f2.posterCN": "人生重启局",
+    "f2.posterSub": "你的每一次选择，都可能改变一个人的人生。",
+    "f2.vote": "观众投票 · 第 03 期",
+    "f2.v1": "让她辞职",
+    "f2.v2": "让她留下",
+    "f2.st1": "选择节点",
+    "f2.st2": "单期时长",
+    "f2.st3": "平台分发",
+
+    "o.tag": "镜头之外",
+    "o.title": "镜头",
+    "o.title2": "之外",
+    "o.lede": "成片里没有的部分：机器怎么架到那儿、光等了多久、夜里又去了哪里。",
+    "o.sub": "不拍片的时候",
+
+    "a.tag": "关于",
+    "a.t1": "声音",
+    "a.t2": "背后",
+    "a.t3": "的那个人",
+    "a.cap": "郑州，2026",
+    "a.p1": "我在河南工业大学读播音与主持艺术——三年气息、稿件分析，以及站在镜头前直到它不再让人紧张。",
+    "a.p2": "镜头带我走到剪辑，剪辑又带我走到导演：一条总把你送回同一扇门的走廊（恐怖短片），城墙根下还没被拆掉的巷子（电视专题片）。",
+    "a.p3": "后来生成工具来了，问题变了。如果模型能写脚本、能剪片子、能配音，那么专门学这件事的人还剩下什么？我目前的答案是判断力——我想用两年时间弄清楚它到底意味着什么。",
+    "a.skills": "能力",
+    "a.sk1": "出镜主持与配音",
+    "a.sk2": "纪录片拍摄与剪辑",
+    "a.sk3": "Premiere Pro · After Effects",
+    "a.sk4": "AI 视频与图像生成",
+    "a.sk5": "提示词设计与分镜",
+    "a.sk6": "Python 基础",
+    "a.sk7": "提案写作与节目策划",
+    "a.sk8": "普通话二级甲等",
+    "a.path": "经历",
+    "a.tl1t": "河南工业大学",
+    "a.tl1d": "播音与主持艺术 · 辅修金融 · GPA 3.67",
+    "a.tl2t": "香港大公文汇传媒集团",
+    "a.tl2d": "采编部实习记者——独立采访、写稿、拍摄。",
+    "a.tl3t": "北京泰然若晴文化",
+    "a.tl3d": "影视媒体助理——会议记录、现场辅助、宣传物料。",
+    "a.tl4t": "河南省话剧艺术中心",
+    "a.tl4d": "主持兼舞台助理——独立主持两场公开活动，录制旁白。",
+    "a.tl5t": "河南豫剧院",
+    "a.tl5d": "市场营销部实习——新媒体运营与演出保障。",
+    "a.tl6t": "河南省城市科学研究会",
+    "a.tl6d": "宣讲员——国家安全与红色遗址宣传活动。",
+
+    "c.tag": "联系",
+    "c.kicker": "欢迎合作，也欢迎来争论：机器到底能不能撑住一个场子。",
+    "c.edu": "学历",
+    "c.edu1": "河南工业大学",
+    "c.edu2": "播音与主持艺术 · 2023—2027",
+    "c.based": "所在地",
+    "c.now": "目前在",
+    "c.nowv": "准备 2027 年入学的硕士申请。",
+    "c.built": "由我自己设计与搭建",
+    "c.top": "回到顶部 ↑"
+  }
+};
