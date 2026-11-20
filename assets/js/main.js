@@ -587,16 +587,54 @@
   function renderWorks() {
     if (!gridEl) return;
     gridEl.innerHTML = "";
+    let lastGroup = null;
     WORKS.forEach((w, i) => {
+      /* a group header once per cluster — "Ⅰ AIGC 创新实践 / Ⅱ 视听叙事 / Ⅲ 商业传播" */
+      if (w.group && w.group !== lastGroup) {
+        lastGroup = w.group;
+        const g = (typeof WORK_GROUPS !== "undefined")
+          ? WORK_GROUPS.filter((x) => x.id === w.group)[0] : null;
+        if (g) gridEl.appendChild(buildGroupHead(g));
+      }
+
       const card = document.createElement("article");
-      card.className = "card" + (w.ai ? " card--ai" : "");
+      card.className = "card" + (w.ai ? " card--ai" : "") + (w.doc ? " card--doc" : "");
       card.style.setProperty("--span", w.span);
       card.dataset.span = String(w.span);
-      card.style.setProperty("--ar", w.ar);
+      if (w.ar) card.style.setProperty("--ar", w.ar);
       card.dataset.type = w.type;
       card.dataset.index = i;
       if (!renderedOnce) card.style.animationDelay = (i * 55) + "ms";
       else card.style.animation = "none";
+
+      /* a proposal is a document, not a film: wide paper strip, opens the reader */
+      if (w.doc) {
+        const cover = document.createElement("div");
+        cover.className = "doc-card__cover";
+        const covImg = document.createElement("img");
+        covImg.src = w.cover;
+        covImg.alt = pick(w.title);
+        covImg.loading = "lazy";
+        cover.appendChild(covImg);
+
+        const body = document.createElement("div");
+        body.className = "doc-card__body";
+        body.innerHTML =
+          `<span class="card__kicker">${pick(w.kicker)}</span>` +
+          `<h3 class="card__title">${pick(w.title)}</h3>` +
+          `<p class="doc-card__sub">${pick(w.sub)}</p>` +
+          `<p class="doc-card__tags">${w.tags.map((tg) => `<span>${pick(tg)}</span>`).join("")}</p>` +
+          `<span class="doc-card__meta">${pick(w.note)}</span>`;
+
+        const go = document.createElement("span");
+        go.className = "doc-card__go";
+        go.innerHTML = `${pick(w.cta)} <i aria-hidden="true">↗</i>`;
+
+        card.append(cover, body, go);
+        card.addEventListener("click", (e) => openScript(e));
+        gridEl.appendChild(card);
+        return;
+      }
 
       const frame = document.createElement("div");
       frame.className = "card__frame";
@@ -675,6 +713,14 @@
         tech.className = "card__tech";
         tech.textContent = pick(w.ai.line);
         left.appendChild(tech);
+
+        /* the sentence that separates “directed with a model” from “used a tool” */
+        if (w.ai.credit) {
+          const credit = document.createElement("span");
+          credit.className = "card__credit";
+          credit.textContent = pick(w.ai.credit);
+          left.appendChild(credit);
+        }
       }
 
       const meta = document.createElement("span");
@@ -689,6 +735,19 @@
 
     $("#workCount").textContent = String(WORKS.length).padStart(2, "0");
 
+    /* a closing note beside the last card — keeps the final row from hanging */
+    if (typeof WORK_NOTE !== "undefined") {
+      const note = document.createElement("aside");
+      note.className = "grid__note";
+      note.dataset.type = WORK_NOTE.type;
+      note.innerHTML =
+        `<span class="grid__note-k">${pick(WORK_NOTE.k)}</span>` +
+        `<h3 class="grid__note-t">${pick(WORK_NOTE.t)}</h3>` +
+        `<p class="grid__note-d">${pick(WORK_NOTE.d)}</p>` +
+        `<p class="grid__note-tags">${WORK_NOTE.tags.map((x) => `<span>${pick(x)}</span>`).join("")}</p>`;
+      gridEl.appendChild(note);
+    }
+
     // keep the filter counters honest
     const counts = { all: WORKS.length, photo: 0, ai: 0, motion: 0 };
     WORKS.forEach((w) => { counts[w.type] = (counts[w.type] || 0) + 1; });
@@ -701,16 +760,41 @@
     renderedOnce = true;
   }
 
+  function buildGroupHead(g) {
+    const head = document.createElement("div");
+    head.className = "grid__head";
+    head.dataset.group = g.id;
+    head.innerHTML =
+      `<span class="grid__k">${g.k}</span>` +
+      `<span class="grid__t">${pick(g.t)}</span>` +
+      (g.hint ? `<span class="grid__hint">${pick(g.hint)}</span>` : "") +
+      `<span class="grid__d">${pick(g.d)}</span>`;
+    return head;
+  }
+
   function applyFilter(f) {
     activeFilter = f;
     $$(".filter").forEach((b) => b.classList.toggle("is-on", b.dataset.filter === f));
-    /* the “start here” line only makes sense when the AI pair is actually on top */
-    const lead = $("#worksLead");
-    if (lead) lead.classList.toggle("is-off", f !== "all");
     $$(".card").forEach((c) => {
       const show = f === "all" || c.dataset.type === f;
       c.classList.toggle("is-hidden", !show);
     });
+    $$(".grid__note").forEach((n) => {
+      n.classList.toggle("is-hidden", !(f === "all" || n.dataset.type === f));
+    });
+    /* a header goes away when its whole cluster is filtered out */
+    if (gridEl) {
+      const kids = Array.from(gridEl.children);
+      kids.forEach((node, i) => {
+        if (!node.classList.contains("grid__head")) return;
+        let alive = false;
+        for (let j = i + 1; j < kids.length; j++) {
+          if (kids[j].classList.contains("grid__head")) break;
+          if (!kids[j].classList.contains("is-hidden")) { alive = true; break; }
+        }
+        node.classList.toggle("is-off", !alive);
+      });
+    }
   }
 
   $$(".filter").forEach((btn) => {
