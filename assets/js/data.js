@@ -157,13 +157,13 @@ const WORKS = [
     poster: "assets/img/news.jpg",
     preview: "assets/vid/preview/news.mp4",
     full:    "assets/vid/full/news.mp4",
-    dur:     "5:52",
+    dur:     "5:33",
     seed: 77, art: "grid", tone: "cyan",
     title: { en: "Campus Newscast", zh: "校园新闻联播" },
     sub: { en: "A student-made campus newscast. I am the one in front of the camera — and the one who planned and cut it.",
            zh: "学生自制的校园新闻节目。镜头前出镜的是我，策划和剪辑也是我。" },
     role: { en: "On camera · planning · editing", zh: "出镜 · 策划 · 剪辑" },
-    note: { en: "Broadcast · 2024 · 5:52", zh: "电视新闻 · 2024 · 5 分 52 秒" }
+    note: { en: "Broadcast · 2024 · 5:33", zh: "电视新闻 · 2024 · 5 分 33 秒" }
   },
   /* ══ Ⅲ 商业 ══ */
   {
