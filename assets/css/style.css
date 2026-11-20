@@ -599,11 +599,13 @@ html[lang="zh"] .grid__d{ font-size:12px; line-height:1.7; }
   grid-column:span var(--span, 4);
   position:relative;
   cursor:pointer;
-  animation:cardIn .7s var(--ease) both;
-}@keyframes cardIn{
-  from{ opacity:0; transform:translateY(22px) scale(.985); }
-  to  { opacity:1; transform:none; }
+  /* enters on scroll (not on paint), staggered inside its own cluster */
+  opacity:0;
+  translate:0 34px;
+  transition:opacity .8s var(--ease), translate 1s var(--ease);
+  transition-delay:calc(var(--i, 0) * 85ms);
 }
+.card.is-in{ opacity:1; translate:0 0; }
 .card.is-hidden{ display:none; }
 
 .card__frame{
@@ -611,14 +613,22 @@ html[lang="zh"] .grid__d{ font-size:12px; line-height:1.7; }
   overflow:hidden;
   background:var(--bg-3);
   aspect-ratio:var(--ar, .8);
+  /* a curtain, so the picture arrives rather than pops */
+  clip-path:inset(0 0 100% 0);
+  transition:clip-path 1.05s var(--ease);
+  transition-delay:calc(var(--i, 0) * 85ms + 55ms);
 }
+.card.is-in .card__frame{ clip-path:inset(0 0 0 0); }
 .card__frame .art{
-  transition:transform 1.25s var(--ease), filter .7s ease;
+  transform:scale(1.07);
+  transition:transform 1.4s var(--ease), filter .7s ease;
   filter:saturate(.92) contrast(1.02);
 }
-.card:hover .card__frame .art{
+.card.is-in .card__frame .art{ transform:none; }
+.card.is-in:hover .card__frame .art{
   transform:scale(1.045);
   filter:saturate(1.02) contrast(1.04);
+  transition-delay:0s;
 }
 
 .card__badge{
@@ -1703,3 +1713,221 @@ html[lang="zh"] .warn__d{ font-size:13px; line-height:2; }
 .poster__livery i:nth-child(1){ top:26%; opacity:.55; }
 .poster__livery i:nth-child(2){ top:32%; height:2px; opacity:.8; }
 .poster__livery i:nth-child(3){ top:38%; opacity:.3; }
+
+/* ══════════════════════════════════════════════════════════
+   SCROLL CHOREOGRAPHY
+   Everything here is driven by .is-in, added from main.js by
+   one shared IntersectionObserver. Rules use `opacity`,
+   `translate` and `clip-path` — never `transform` — so they
+   can never fight the hover transforms already in this file.
+   ══════════════════════════════════════════════════════════ */
+
+/* 1 · section headers — the number lifts, the rule draws itself */
+.sec__head .sec__num,
+.sec__head .sec__tag,
+.sec__head .sec__count{
+  opacity:0; translate:0 12px;
+  transition:opacity .7s var(--ease), translate .9s var(--ease);
+}
+.sec__head .sec__tag{ transition-delay:.07s; }
+.sec__head .sec__count{ transition-delay:.14s; }
+.sec__head.is-in .sec__num,
+.sec__head.is-in .sec__tag,
+.sec__head.is-in .sec__count{ opacity:1; translate:0 0; }
+.sec__head .sec__rule{
+  transform:scaleX(0); transform-origin:left center;
+  transition:transform 1.25s var(--ease) .06s;
+}
+.sec__head.is-in .sec__rule{ transform:scaleX(1); }
+
+/* 2 · cluster headers inside the works grid */
+.grid__head{
+  opacity:0; translate:0 18px;
+  transition:opacity .7s var(--ease), translate .95s var(--ease);
+}
+.grid__head.is-in{ opacity:1; translate:0 0; }
+.grid__head .grid__k{
+  opacity:0; translate:-10px 0; display:inline-block;
+  transition:opacity .6s var(--ease) .14s, translate .8s var(--ease) .14s;
+}
+.grid__head.is-in .grid__k{ opacity:1; translate:0 0; }
+
+/* 3 · the proposal poster: curtain up, then its parts settle in */
+.poster{ clip-path:inset(0 0 100% 0); transition:clip-path 1.2s var(--ease); }
+.poster.is-in{ clip-path:inset(0 0 0 0); }
+.poster__tag,
+.poster__cn,
+.poster__en,
+.poster__sub,
+.poster__mark,
+.poster__stats > div{
+  opacity:0; translate:0 16px;
+  transition:opacity .8s var(--ease), translate .9s var(--ease);
+}
+.poster.is-in .poster__tag{ opacity:1; translate:0 0; transition-delay:.3s; }
+.poster.is-in .poster__cn{ opacity:1; translate:0 0; transition-delay:.4s; }
+.poster.is-in .poster__en{ opacity:1; translate:0 0; transition-delay:.46s; }
+.poster.is-in .poster__sub{ opacity:1; translate:0 0; transition-delay:.52s; }
+.poster.is-in .poster__mark{ opacity:1; translate:0 0; transition-delay:.6s; }
+.poster.is-in .poster__stats > div{ opacity:1; translate:0 0; }
+.poster.is-in .poster__stats > div:nth-child(1){ transition-delay:.62s; }
+.poster.is-in .poster__stats > div:nth-child(2){ transition-delay:.7s; }
+.poster.is-in .poster__stats > div:nth-child(3){ transition-delay:.78s; }
+
+/* the audience vote actually fills, once it is on screen */
+.vote__row::before{ width:0; transition:width 1.15s var(--ease) .7s; }
+.vote__row:nth-of-type(2)::before{ transition-delay:.86s; }
+.poster.is-in .vote__row::before{ width:var(--p); }
+
+/* 4 · the three-case argument beside the poster */
+.step{
+  opacity:0; translate:-14px 0;
+  transition:opacity .7s var(--ease), translate .85s var(--ease);
+  transition-delay:calc(var(--i, 0) * 90ms);
+}
+.step.is-in{ opacity:1; translate:0 0; }
+
+/* 5 · read-the-proposal link */
+.doc{ opacity:0; translate:0 16px; transition:opacity .7s var(--ease), translate .9s var(--ease); }
+.doc.is-in{ opacity:1; translate:0 0; }
+
+/* 6 · portrait: a vertical wipe, and the photograph settles */
+.portrait{ clip-path:inset(0 0 100% 0); transition:clip-path 1.3s var(--ease); }
+.portrait.is-in{ clip-path:inset(0 0 0 0); }
+.portrait .portrait__img{
+  transform:scale(1.09);
+  transition:transform 1.7s var(--ease);
+}
+.portrait.is-in .portrait__img{ transform:none; }
+
+/* 7 · capability chips and the timeline cascade in */
+.chips li,
+.timeline li{
+  opacity:0; translate:0 12px;
+  transition:opacity .6s var(--ease), translate .7s var(--ease);
+  transition-delay:calc(var(--i, 0) * 55ms);
+}
+.chips li.is-in,
+.timeline li.is-in{ opacity:1; translate:0 0; }
+
+/* 8 · off-screen strip */
+.bts__item{
+  opacity:0; translate:0 26px;
+  transition:opacity .8s var(--ease), translate .95s var(--ease);
+  transition-delay:calc(var(--i, 0) * 100ms);
+}
+.bts__item.is-in{ opacity:1; translate:0 0; }
+.hobbies li{
+  opacity:0; translate:0 16px;
+  transition:opacity .65s var(--ease), translate .8s var(--ease);
+  transition-delay:calc(var(--i, 0) * 70ms);
+}
+.hobbies li.is-in{ opacity:1; translate:0 0; }
+.off__lede{
+  opacity:0; translate:0 18px;
+  transition:opacity .8s var(--ease), translate 1s var(--ease);
+}
+.off__lede.is-in{ opacity:1; translate:0 0; }
+.off__sub .sec__rule{
+  transform:scaleX(0); transform-origin:left center;
+  transition:transform 1.2s var(--ease);
+}
+.off__sub.is-in .sec__rule{ transform:scaleX(1); }
+
+/* 9 · filters arrive last in the works header */
+.filter{
+  opacity:0; translate:0 10px;
+  transition:color .3s ease, border-color .3s ease, background .3s ease,
+             opacity .6s var(--ease), translate .75s var(--ease);
+  transition-delay:calc(var(--i, 0) * 70ms + 120ms);
+}
+.filter.is-in{ opacity:1; translate:0 0; }
+
+/* 10 · proposal strip inside the grid, and the closing note */
+.card--doc .doc-card__cover{
+  clip-path:inset(0 0 100% 0);
+  transition:clip-path 1.05s var(--ease);
+  transition-delay:calc(var(--i, 0) * 85ms + 70ms);
+}
+.card--doc.is-in .doc-card__cover{ clip-path:inset(0 0 0 0); }
+.grid__note{
+  opacity:0; translate:0 24px;
+  transition:opacity .8s var(--ease), translate 1s var(--ease);
+  transition-delay:calc(var(--i, 0) * 85ms);
+}
+.grid__note.is-in{ opacity:1; translate:0 0; }
+
+/* 11 · the signature at the end of the statement */
+.sign{ opacity:0; translate:0 12px; transition:opacity .7s var(--ease) .2s, translate .9s var(--ease) .2s; }
+.sign.is-in{ opacity:1; translate:0 0; }
+
+/* 12 · nothing moves for anyone who asked for that */
+@media (prefers-reduced-motion: reduce){
+  .card, .sec__head .sec__num, .sec__head .sec__tag, .sec__head .sec__count,
+  .grid__head, .grid__head .grid__k, .poster__tag, .poster__cn, .poster__en,
+  .poster__sub, .poster__mark, .poster__stats > div, .step, .doc, .chips li,
+  .timeline li, .bts__item, .hobbies li, .off__lede, .filter, .grid__note, .sign{
+    opacity:1 !important; translate:none !important;
+  }
+  .card__frame, .card--doc .doc-card__cover, .poster, .portrait{ clip-path:none !important; }
+  .sec__head .sec__rule, .off__sub .sec__rule{ transform:none !important; }
+  .vote__row::before{ width:var(--p) !important; }
+  .card__frame .art, .portrait .portrait__img{ transform:none !important; }
+}
+
+/* 13 · contact strip: kicker, then the three cells one after another */
+.contact__kicker,
+.contact__cell{
+  opacity:0; translate:0 16px;
+  transition:opacity .7s var(--ease), translate .85s var(--ease);
+  transition-delay:calc(var(--i, 0) * 80ms);
+}
+.contact__kicker.is-in,
+.contact__cell.is-in{ opacity:1; translate:0 0; }
+@media (prefers-reduced-motion: reduce){
+  .contact__kicker, .contact__cell{ opacity:1 !important; translate:none !important; }
+}
+
+/* 14 · the caption under each poster arrives just after its picture */
+.card .card__info > *,
+.card--doc .doc-card__body > *{
+  opacity:0; translate:0 10px;
+  /* per-property delays, so the title keeps its instant hover colour */
+  transition:
+    opacity .6s var(--ease) calc(var(--i, 0) * 85ms + 120ms),
+    translate .7s var(--ease) calc(var(--i, 0) * 85ms + 120ms),
+    color .3s ease 0s;
+}
+.card.is-in .card__info > *,
+.card.is-in .doc-card__body > *{ opacity:1; translate:0 0; }
+.card.is-in .card__info > *:nth-child(2),
+.card.is-in .doc-card__body > *:nth-child(2){
+  transition:
+    opacity .6s var(--ease) calc(var(--i, 0) * 85ms + 190ms),
+    translate .7s var(--ease) calc(var(--i, 0) * 85ms + 190ms),
+    color .3s ease 0s;
+}
+.card.is-in .card__info > *:nth-child(3),
+.card.is-in .doc-card__body > *:nth-child(3){
+  transition:
+    opacity .6s var(--ease) calc(var(--i, 0) * 85ms + 250ms),
+    translate .7s var(--ease) calc(var(--i, 0) * 85ms + 250ms),
+    color .3s ease 0s;
+}
+.card.is-in .card__info > *:nth-child(4),
+.card.is-in .doc-card__body > *:nth-child(4){
+  transition:
+    opacity .6s var(--ease) calc(var(--i, 0) * 85ms + 310ms),
+    translate .7s var(--ease) calc(var(--i, 0) * 85ms + 310ms),
+    color .3s ease 0s;
+}
+.card.is-in .card__info > *:nth-child(5),
+.card.is-in .doc-card__body > *:nth-child(5){
+  transition:
+    opacity .6s var(--ease) calc(var(--i, 0) * 85ms + 370ms),
+    translate .7s var(--ease) calc(var(--i, 0) * 85ms + 370ms),
+    color .3s ease 0s;
+}
+@media (prefers-reduced-motion: reduce){
+  .card .card__info > *, .card--doc .doc-card__body > *{ opacity:1 !important; translate:none !important; }
+}

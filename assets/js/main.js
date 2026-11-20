@@ -588,10 +588,12 @@
     if (!gridEl) return;
     gridEl.innerHTML = "";
     let lastGroup = null;
+    let slot = 0;                       /* stagger restarts with each cluster */
     WORKS.forEach((w, i) => {
       /* a group header once per cluster — "Ⅰ AIGC 创新实践 / Ⅱ 视听叙事 / Ⅲ 商业传播" */
       if (w.group && w.group !== lastGroup) {
         lastGroup = w.group;
+        slot = 0;
         const g = (typeof WORK_GROUPS !== "undefined")
           ? WORK_GROUPS.filter((x) => x.id === w.group)[0] : null;
         if (g) gridEl.appendChild(buildGroupHead(g));
@@ -604,8 +606,7 @@
       if (w.ar) card.style.setProperty("--ar", w.ar);
       card.dataset.type = w.type;
       card.dataset.index = i;
-      if (!renderedOnce) card.style.animationDelay = (i * 55) + "ms";
-      else card.style.animation = "none";
+      card.style.setProperty("--i", String(slot++));
 
       /* a proposal is a document, not a film: wide paper strip, opens the reader */
       if (w.doc) {
@@ -1378,6 +1379,8 @@
     clearTimeout(rzTimer);
     rzTimer = setTimeout(() => {
       if (readerEl && readerEl.classList.contains("is-open")) relayoutReader(true);
+      measureDrift();
+      onScroll();
     }, 280);
   });
 
@@ -1439,25 +1442,62 @@
 
     // re-observe freshly created nodes
     observeAll();
+    measureDrift();
   }
 
   $("#langToggle").addEventListener("click", () => applyLang(lang === "en" ? "zh" : "en"));
 
   /* ════════════════════════════════════════
      7. REVEAL ON SCROLL
+     One observer for the page; assets/css/style.css owns the
+     choreography. Elements that live in a row get a --i so the
+     CSS can stagger them without knowing the index.
      ════════════════════════════════════════ */
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach((e) => {
-      if (e.isIntersecting) {
-        e.target.classList.add("is-in");
-        io.unobserve(e.target);
-      }
+  const STAGGER = ".chips li, .timeline li, .hobbies li, .bts__item, .step, .filter, .contact__cell";
+  const REVEAL_SEL = [
+    ".reveal", ".display", ".line", ".card", ".grid__head", ".sec__head",
+    ".step", ".doc", ".poster", ".portrait", ".grid__note", ".sign",
+    ".off__lede", ".off__sub", ".chips li", ".timeline li",
+    ".bts__item", ".hobbies li", ".filter", ".contact__kicker", ".contact__cell"
+  ].join(", ");
+
+  /* numbers that count themselves up, e.g. the 12 choice points */
+  function countUp(el) {
+    const raw = (el.textContent || "").trim();
+    if (!/^\d+$/.test(raw)) return;
+    const target = parseInt(raw, 10);
+    if (!target) return;
+    const pad = raw.length, t0 = performance.now(), dur = 950;
+    requestAnimationFrame(function step(now) {
+      const p = Math.min(1, (now - t0) / dur);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = String(Math.round(target * eased)).padStart(pad, "0");
+      if (p < 1) requestAnimationFrame(step);
     });
-  }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
+  }
+
+  const io = ("IntersectionObserver" in window)
+    ? new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (!e.isIntersecting) return;
+          const el = e.target;
+          el.classList.add("is-in");
+          io.unobserve(el);
+          if (el.hasAttribute("data-count")) countUp(el);
+          el.querySelectorAll("[data-count]").forEach(countUp);
+        });
+      }, { threshold: 0.14, rootMargin: "0px 0px -7% 0px" })
+    : null;
 
   function observeAll() {
-    $$(".reveal, .display, .line").forEach((el) => {
-      if (!el.classList.contains("is-in")) io.observe(el);
+    $$(REVEAL_SEL).forEach((el) => {
+      if (el.classList.contains("is-in")) return;
+      if (el.matches(STAGGER) && el.parentElement) {
+        const idx = Array.prototype.indexOf.call(el.parentElement.children, el);
+        if (idx > -1) el.style.setProperty("--i", String(idx));
+      }
+      if (REDUCED || !io) el.classList.add("is-in");
+      else io.observe(el);
     });
   }
 
@@ -1503,6 +1543,33 @@
   const nav = $("#nav"), bar = $("#progressBar"), heroMedia = $(".hero__media");
   let lastY = 0, ticking = false;
 
+  /* a slow vertical drift on the big blocks — depth without motion sickness.
+     Baselines are measured with the transform cleared, so the loop can
+     never feed back into its own measurement. */
+  let driftEls = [];
+  function measureDrift() {
+    driftEls = $$("[data-drift]");
+    driftEls.forEach((el) => {
+      const was = el.style.transform;
+      el.style.transform = "none";
+      const r = el.getBoundingClientRect();
+      el.__top = r.top + window.scrollY;
+      el.__h = r.height;
+      el.style.transform = was;
+    });
+  }
+  function drift() {
+    if (REDUCED || !driftEls.length) return;
+    const vh = innerHeight, y = window.scrollY;
+    for (let i = 0; i < driftEls.length; i++) {
+      const el = driftEls[i];
+      const sp = parseFloat(el.dataset.drift) || 0.06;
+      const mid = el.__top - y + el.__h / 2 - vh / 2;
+      if (Math.abs(mid) > vh * 1.4) continue;
+      el.style.transform = `translate3d(0, ${(-mid * sp).toFixed(1)}px, 0)`;
+    }
+  }
+
   function onScroll() {
     const y = window.scrollY;
     const max = document.documentElement.scrollHeight - innerHeight;
@@ -1516,6 +1583,7 @@
     if (heroMedia && !REDUCED) {
       heroMedia.style.transform = `translate3d(0, ${y * 0.28}px, 0)`;
     }
+    drift();
   }
 
   window.addEventListener("scroll", () => {
@@ -1555,6 +1623,12 @@
         }, 280);
       }
     }, 110);
+
+    /* fonts and images settle a beat after paint — re-measure then */
+    window.addEventListener("load", () => { measureDrift(); onScroll(); });
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(() => { measureDrift(); onScroll(); });
+    }
   }
 
   document.body.classList.add("is-locked");
