@@ -12,7 +12,6 @@ const SITE = {
   first: "Ziyan",
   last:  "Geng",
   nameCN: "耿子严",
-  email: "1807926008@qq.com",
   year: 2026
 };
 
@@ -168,27 +167,30 @@ const WORKS = [
   },
   /* ══ Ⅲ 商业 ══ */
   {
-    type: "film", group: "biz", span: 4, ar: 0.89,
+    /* 早期练习：放在最后、压暗、字号更小——它只要说明「我会拍会剪」，不用抢戏 */
+    type: "film", group: "biz", span: 4, ar: 0.89, quiet: true,
     poster: "assets/img/shuoche.jpg",
     preview: "assets/vid/preview/shuoche.mp4",
     full:    "assets/vid/full/shuoche.mp4",
     dur:     "2:25",
     seed: 63, art: "dust", tone: "steel",
+    kicker: { en: "An early exercise", zh: "早期练习" },
     title: { en: "Car Talk", zh: "说车视频" },
-    sub: { en: "An early one-man car video: one car, one street, shot, hosted and cut on my own.",
-           zh: "早期单机位说车短片：一台车、一条街，自己拍、自己出镜、自己剪。" },
+    sub: { en: "One car, one street, shot and cut alone — the first time I finished something end to end.",
+           zh: "一台车、一条街，自己拍完剪完——第一次把一件事从头做到尾。" },
     role: { en: "Shot · hosted · edited", zh: "拍摄 · 出镜 · 剪辑" },
-    note: { en: "Vertical video · 2024 · 2:25", zh: "竖屏短视频 · 2024 · 2 分 25 秒" }
+    note: { en: "Student exercise · 2024 · 2:25", zh: "课后练习 · 2024 · 2 分 25 秒" },
+    badge: { en: "Exercise", zh: "练习" }
   }
 ];
 
 /* Ⅲ 组右边那块字：讲清「竖屏是另一套语法」，也给最后一行配平 */
 const WORK_NOTE = {
   type: "film",
-  k: { en: "Why this one closes the page", zh: "为什么它放在最后" },
+  k: { en: "Why the page ends here", zh: "为什么它放在最后" },
   t: { en: "Vertical is its own grammar", zh: "竖屏是另一套语法" },
-  d: { en: "Landscape explains with framing; vertical gets two seconds and one line of subtitle. I shot, hosted and cut this one alone in 2024 — no crew, no budget, one street. It is the piece that taught me to finish things.",
-       zh: "横屏靠景别交代环境，竖屏只有两秒和一行字幕。这支 2024 年的说车视频，拍、出镜、剪全是我一个人——没有团队、没有预算、就一条街。它教会我的是把一件事从头做完。" },
+  d: { en: "Landscape explains with framing; vertical gets two seconds and one line of subtitle. The car video on the left is an exercise from 2024, kept because it is where I learned the format — and because finishing something alone is a skill you can only practise.",
+       zh: "横屏靠景别交代环境，竖屏只有两秒和一行字幕。左边这支 2024 年的说车视频是一次练习，留在这里只因为它是我学这门语法的地方——也因为它证明我一个人能把一件事做完。" },
   tags: [
     { en: "Vertical-first", zh: "竖屏语境" },
     { en: "Short-form pacing", zh: "碎片化节奏" },
@@ -274,7 +276,6 @@ const I18N = {
     "nav.mark": "Ziyan Geng",
     "nav.works": "Works",
     "nav.about": "About",
-    "nav.contact": "Contact",
 
     "hero.kicker": "Portfolio 2026 — MA application, BNU–HKBU UIC",
     "hero.first": "Ziyan",
@@ -375,14 +376,6 @@ const I18N = {
     "a.tl6t": "Henan Urban Science Society",
     "a.tl6d": "Public speaker — civil defence and heritage campaigns.",
 
-    "c.tag": "Contact",
-    "c.kicker": "Open to collaboration, and to arguments about whether a machine can hold a room.",
-    "c.edu": "Education",
-    "c.edu1": "Henan University of Technology",
-    "c.edu2": "BA Broadcasting & Hosting Art · 2023–27",
-    "c.based": "Based in",
-    "c.now": "Currently",
-    "c.nowv": "Preparing an MA application, 2027 entry.",
     "c.built": "Designed & built by me",
     "c.top": "Back to top ↑"
   },
@@ -392,7 +385,6 @@ const I18N = {
     "nav.mark": "耿子严",
     "nav.works": "作品",
     "nav.about": "关于",
-    "nav.contact": "联系",
 
     "hero.kicker": "作品集 2026 — 申请 北师香港浸会大学",
     "hero.first": "耿子严",
@@ -493,14 +485,6 @@ const I18N = {
     "a.tl6t": "河南省城市科学研究会",
     "a.tl6d": "宣讲员——国家安全与红色遗址宣传活动。",
 
-    "c.tag": "联系",
-    "c.kicker": "欢迎合作，也欢迎来争论：机器到底能不能撑住一个场子。",
-    "c.edu": "学历",
-    "c.edu1": "河南工业大学",
-    "c.edu2": "播音与主持艺术 · 2023—2027",
-    "c.based": "所在地",
-    "c.now": "目前在",
-    "c.nowv": "准备 2027 年入学的硕士申请。",
     "c.built": "由我自己设计与搭建",
     "c.top": "回到顶部 ↑"
   }

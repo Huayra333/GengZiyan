@@ -600,7 +600,8 @@
       }
 
       const card = document.createElement("article");
-      card.className = "card" + (w.ai ? " card--ai" : "") + (w.doc ? " card--doc" : "");
+      card.className = "card" + (w.ai ? " card--ai" : "") + (w.doc ? " card--doc" : "")
+        + (w.quiet ? " card--quiet" : "");
       card.style.setProperty("--span", w.span);
       card.dataset.span = String(w.span);
       if (w.ar) card.style.setProperty("--ar", w.ar);
@@ -666,7 +667,7 @@
 
       const badge = document.createElement("span");
       badge.className = "card__badge" + (w.ai ? " card__badge--ai" : "");
-      badge.textContent = w.ai ? t("w.aiTag") : pick(TYPE_LABEL[w.type]);
+      badge.textContent = w.badge ? pick(w.badge) : (w.ai ? t("w.aiTag") : pick(TYPE_LABEL[w.type]));
       frame.appendChild(badge);
 
       /* horror: say it on the poster, before anyone clicks */
@@ -1423,13 +1424,6 @@
       if (line) line.style.display = hLast ? "" : "none";
     });
 
-    const mail = $(".contact__mail");
-    if (mail && SITE.email) {
-      mail.href = "mailto:" + SITE.email;
-      const inner = mail.querySelector(".line__in");
-      if (inner) inner.textContent = SITE.email;
-    }
-
     renderWorks();
     renderBts();
     renderHobbies();
@@ -1453,12 +1447,12 @@
      choreography. Elements that live in a row get a --i so the
      CSS can stagger them without knowing the index.
      ════════════════════════════════════════ */
-  const STAGGER = ".chips li, .timeline li, .hobbies li, .bts__item, .step, .filter, .contact__cell";
+  const STAGGER = ".chips li, .timeline li, .hobbies li, .bts__item, .step, .filter";
   const REVEAL_SEL = [
     ".reveal", ".display", ".line", ".card", ".grid__head", ".sec__head",
     ".step", ".doc", ".poster", ".portrait", ".grid__note", ".sign",
     ".off__lede", ".off__sub", ".chips li", ".timeline li",
-    ".bts__item", ".hobbies li", ".filter", ".contact__kicker", ".contact__cell"
+    ".bts__item", ".hobbies li", ".filter"
   ].join(", ");
 
   /* numbers that count themselves up, e.g. the 12 choice points */
