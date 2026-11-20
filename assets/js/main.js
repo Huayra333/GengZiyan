@@ -591,6 +591,7 @@
       const card = document.createElement("article");
       card.className = "card";
       card.style.setProperty("--span", w.span);
+      card.dataset.span = String(w.span);
       card.style.setProperty("--ar", w.ar);
       card.dataset.type = w.type;
       card.dataset.index = i;
@@ -652,6 +653,15 @@
       const info = document.createElement("div");
       info.className = "card__info";
       const left = document.createElement("div");
+
+      /* optional strapline above the title, e.g. “a true story, re-staged with AI” */
+      if (w.kicker) {
+        const kicker = document.createElement("span");
+        kicker.className = "card__kicker";
+        kicker.textContent = pick(w.kicker);
+        left.appendChild(kicker);
+      }
+
       const title = document.createElement("h3");
       title.className = "card__title";
       title.textContent = pick(w.title);

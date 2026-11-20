@@ -599,6 +599,14 @@ html[lang="zh"] .sign__name{ font-family:var(--f-cn); font-style:normal; font-we
   gap:14px;
   padding-top:11px;
 }
+/* strapline above the title — used to flag “a true story, re-staged with AI” */
+.card__kicker{
+  display:block;
+  margin-bottom:6px;
+  font-size:9px; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--accent);
+  opacity:.92;
+}
 .card__title{
   font-size:clamp(12.5px,.95vw,15px);
   font-weight:600; letter-spacing:-.01em;

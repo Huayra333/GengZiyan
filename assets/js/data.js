@@ -44,8 +44,8 @@ const WORKS = [
     dur:     "4:07",
     seed: 27, art: "dust", tone: "cyan",
     title: { en: "Hush", zh: "噤声" },
-    sub: { en: "A horror short about a corridor that keeps returning you to the same door.",
-           zh: "恐怖短片：一条总把你送回同一扇门的走廊。" },
+    sub: { en: "A horror short about a corridor that keeps returning you to the same door — made for a practical reason: late-night gaming is loud, and “wear headphones” lands harder as horror.",
+           zh: "恐怖短片：一条总把你送回同一扇门的走廊。拍它的起因很实际——夜里打游戏太吵，一句“戴耳机”劝不动，就拍成了恐怖片。" },
     role: { en: "Director · lead", zh: "导演 · 主演" },
     note: { en: "Fiction · 2025 · 4:07", zh: "剧情短片 · 2025 · 4 分 07 秒" },
     warn: {
@@ -67,6 +67,7 @@ const WORKS = [
     full:    "assets/vid/full/ainews.mp4",
     dur:     "1:12",
     seed: 41, art: "bloom", tone: "ember",
+    kicker: { en: "A true story, re-staged with AI", zh: "真实故事的 AI 演绎" },
     title: { en: "From Smoke to Silence", zh: "从烟火到寂静" },
     sub: { en: "A pixel-art AI news story: a ten-yuan buffet stand, and what the comments did to it.",
            zh: "AI 新闻故事：一家十元自助摊位，和评论区对它做的事。" },
@@ -110,6 +111,19 @@ const WORKS = [
            zh: "早期单机位说车短片：一台车、一条街，自己拍、自己出镜、自己剪。" },
     role: { en: "Shot · hosted · edited", zh: "拍摄 · 出镜 · 剪辑" },
     note: { en: "Vertical video · 2024 · 2:25", zh: "竖屏短视频 · 2024 · 2 分 25 秒" }
+  },
+  {
+    type: "film", span: 12, ar: 2.6,
+    poster: "assets/img/news.jpg",
+    preview: "assets/vid/preview/news.mp4",
+    full:    "assets/vid/full/news.mp4",
+    dur:     "5:52",
+    seed: 77, art: "grid", tone: "cyan",
+    title: { en: "Campus Newscast", zh: "校园新闻联播" },
+    sub: { en: "A student-made campus newscast. I am the one in front of the camera — and the one who planned and cut it.",
+           zh: "学生自制的校园新闻节目。镜头前出镜的是我，策划和剪辑也是我。" },
+    role: { en: "On camera · planning · editing", zh: "出镜 · 策划 · 剪辑" },
+    note: { en: "Broadcast · 2024 · 5:52", zh: "电视新闻 · 2024 · 5 分 52 秒" }
   }
 ];
 
