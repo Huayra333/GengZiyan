@@ -589,7 +589,7 @@
     gridEl.innerHTML = "";
     WORKS.forEach((w, i) => {
       const card = document.createElement("article");
-      card.className = "card";
+      card.className = "card" + (w.ai ? " card--ai" : "");
       card.style.setProperty("--span", w.span);
       card.dataset.span = String(w.span);
       card.style.setProperty("--ar", w.ar);
@@ -704,6 +704,9 @@
   function applyFilter(f) {
     activeFilter = f;
     $$(".filter").forEach((b) => b.classList.toggle("is-on", b.dataset.filter === f));
+    /* the “start here” line only makes sense when the AI pair is actually on top */
+    const lead = $("#worksLead");
+    if (lead) lead.classList.toggle("is-off", f !== "all");
     $$(".card").forEach((c) => {
       const show = f === "all" || c.dataset.type === f;
       c.classList.toggle("is-hidden", !show);

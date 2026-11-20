@@ -23,6 +23,47 @@ const SITE = {
    poster / video : 素材路径，留空则显示生成式占位图
    ───────────────────────────────────────────── */
 const WORKS = [
+  /* ── AI first: the two generative pieces lead the grid ── */
+  {
+    type: "ai", span: 8, ar: 1.78,
+    poster: "assets/img/ainews.jpg",
+    preview: "assets/vid/preview/ainews.mp4",
+    full:    "assets/vid/full/ainews.mp4",
+    dur:     "1:12",
+    seed: 41, art: "bloom", tone: "ember",
+    kicker: { en: "A true story, re-staged with AI", zh: "真实故事的 AI 演绎" },
+    title: { en: "From Smoke to Silence", zh: "从烟火到寂静" },
+    sub: { en: "A pixel-art AI news story: a ten-yuan buffet stand, and what the comments did to it.",
+           zh: "AI 新闻故事：一家十元自助摊位，和评论区对它做的事。" },
+    role: { en: "Script · prompts · edit", zh: "脚本 · 提示词 · 剪辑" },
+    note: { en: "AI short · 2026 · 1:12", zh: "AI 短片 · 2026 · 1 分 12 秒" },
+    ai: {
+      line: { en: "Shot list → prompts → generated takes → cut",
+              zh: "分镜 → 提示词 → 生成 → 选片 → 剪辑" },
+      d: { en: "Every frame comes out of a video model. I wrote the shot list, wrote and re-wrote the prompts, steered each take, picked the ones that held together and cut it to sound.",
+           zh: "每一帧都由视频模型生成。分镜是我写的，提示词反复改到模型给出想要的镜头，再挑出能连起来的片段，配上声音剪成片。" }
+    }
+  },
+  {
+    type: "ai", span: 4, ar: 0.89,
+    poster: "assets/img/aifigure.jpg",
+    preview: "assets/vid/preview/aifigure.mp4",
+    full:    "assets/vid/full/aifigure.mp4",
+    dur:     "2:28",
+    seed: 58, art: "grid", tone: "violet",
+    title: { en: "One Small Step", zh: "小人物闯关" },
+    sub: { en: "A stick figure with a red scarf runs through a train yard, orbit, and a boss fight.",
+           zh: "一个系红领巾的火柴人，跑过车站、太空和一场 Boss 战。" },
+    role: { en: "Concept · prompts · edit", zh: "设定 · 提示词 · 剪辑" },
+    note: { en: "AI animation · 2026 · 2:28", zh: "AI 动画 · 2026 · 2 分 28 秒" },
+    ai: {
+      line: { en: "Character → prompts → takes → cut",
+              zh: "角色设定 → 提示词 → 逐镜生成 → 剪辑" },
+      d: { en: "A stick figure invented in text, then kept consistent shot after shot through prompts: the same scarf, the same gait, the same camera. Generated motion, edited rhythm, all of it steered by hand.",
+           zh: "火柴人先用文字设定出来，再靠提示词一镜一镜保持同一个人：同一条红领巾、同一个跑姿、同一套机位。动作是生成的，节奏是剪出来的，方向全程由我控制。" }
+    }
+  },
+  /* ── then the live-action work ── */
   {
     type: "film", span: 7, ar: 1.5,
     poster: "assets/img/chenggen.jpg",
@@ -60,60 +101,9 @@ const WORKS = [
       back: { en: "Back to the works", zh: "先不看，返回" }
     }
   },
+  /* ── then the newscast, then the early vertical piece ── */
   {
-    type: "ai", span: 6, ar: 1.35,
-    poster: "assets/img/ainews.jpg",
-    preview: "assets/vid/preview/ainews.mp4",
-    full:    "assets/vid/full/ainews.mp4",
-    dur:     "1:12",
-    seed: 41, art: "bloom", tone: "ember",
-    kicker: { en: "A true story, re-staged with AI", zh: "真实故事的 AI 演绎" },
-    title: { en: "From Smoke to Silence", zh: "从烟火到寂静" },
-    sub: { en: "A pixel-art AI news story: a ten-yuan buffet stand, and what the comments did to it.",
-           zh: "AI 新闻故事：一家十元自助摊位，和评论区对它做的事。" },
-    role: { en: "Script · prompts · edit", zh: "脚本 · 提示词 · 剪辑" },
-    note: { en: "AI short · 2026 · 1:12", zh: "AI 短片 · 2026 · 1 分 12 秒" },
-    ai: {
-      line: { en: "Shot list → prompts → generated takes → cut",
-              zh: "分镜 → 提示词 → 生成 → 选片 → 剪辑" },
-      d: { en: "Every frame comes out of a video model. I wrote the shot list, wrote and re-wrote the prompts, steered each take, picked the ones that held together and cut it to sound.",
-           zh: "每一帧都由视频模型生成。分镜是我写的，提示词反复改到模型给出想要的镜头，再挑出能连起来的片段，配上声音剪成片。" }
-    }
-  },
-  {
-    type: "ai", span: 3, ar: 0.70,
-    poster: "assets/img/aifigure.jpg",
-    preview: "assets/vid/preview/aifigure.mp4",
-    full:    "assets/vid/full/aifigure.mp4",
-    dur:     "2:28",
-    seed: 58, art: "grid", tone: "violet",
-    title: { en: "One Small Step", zh: "小人物闯关" },
-    sub: { en: "A stick figure with a red scarf runs through a train yard, orbit, and a boss fight.",
-           zh: "一个系红领巾的火柴人，跑过车站、太空和一场 Boss 战。" },
-    role: { en: "Concept · prompts · edit", zh: "设定 · 提示词 · 剪辑" },
-    note: { en: "AI animation · 2026 · 2:28", zh: "AI 动画 · 2026 · 2 分 28 秒" },
-    ai: {
-      line: { en: "Character → prompts → takes → cut",
-              zh: "角色设定 → 提示词 → 逐镜生成 → 剪辑" },
-      d: { en: "A stick figure invented in text, then kept consistent shot after shot through prompts: the same scarf, the same gait, the same camera. Generated motion, edited rhythm, all of it steered by hand.",
-           zh: "火柴人先用文字设定出来，再靠提示词一镜一镜保持同一个人：同一条红领巾、同一个跑姿、同一套机位。动作是生成的，节奏是剪出来的，方向全程由我控制。" }
-    }
-  },
-  {
-    type: "film", span: 3, ar: 0.70,
-    poster: "assets/img/shuoche.jpg",
-    preview: "assets/vid/preview/shuoche.mp4",
-    full:    "assets/vid/full/shuoche.mp4",
-    dur:     "2:25",
-    seed: 63, art: "dust", tone: "steel",
-    title: { en: "Car Talk", zh: "说车视频" },
-    sub: { en: "An early one-man car video: one car, one street, shot, hosted and cut on my own.",
-           zh: "早期单机位说车短片：一台车、一条街，自己拍、自己出镜、自己剪。" },
-    role: { en: "Shot · hosted · edited", zh: "拍摄 · 出镜 · 剪辑" },
-    note: { en: "Vertical video · 2024 · 2:25", zh: "竖屏短视频 · 2024 · 2 分 25 秒" }
-  },
-  {
-    type: "film", span: 12, ar: 2.6,
+    type: "film", span: 8, ar: 1.78,
     poster: "assets/img/news.jpg",
     preview: "assets/vid/preview/news.mp4",
     full:    "assets/vid/full/news.mp4",
@@ -124,6 +114,19 @@ const WORKS = [
            zh: "学生自制的校园新闻节目。镜头前出镜的是我，策划和剪辑也是我。" },
     role: { en: "On camera · planning · editing", zh: "出镜 · 策划 · 剪辑" },
     note: { en: "Broadcast · 2024 · 5:52", zh: "电视新闻 · 2024 · 5 分 52 秒" }
+  },
+  {
+    type: "film", span: 4, ar: 0.89,
+    poster: "assets/img/shuoche.jpg",
+    preview: "assets/vid/preview/shuoche.mp4",
+    full:    "assets/vid/full/shuoche.mp4",
+    dur:     "2:25",
+    seed: 63, art: "dust", tone: "steel",
+    title: { en: "Car Talk", zh: "说车视频" },
+    sub: { en: "An early one-man car video: one car, one street, shot, hosted and cut on my own.",
+           zh: "早期单机位说车短片：一台车、一条街，自己拍、自己出镜、自己剪。" },
+    role: { en: "Shot · hosted · edited", zh: "拍摄 · 出镜 · 剪辑" },
+    note: { en: "Vertical video · 2024 · 2:25", zh: "竖屏短视频 · 2024 · 2 分 25 秒" }
   }
 ];
 
@@ -235,6 +238,7 @@ const I18N = {
     "f.ai": "AI & Generative",
     "w.view": "Play",
     "w.full": "full film",
+    "w.lead": "Start here — both pieces made with AI video models",
     "w.aiTag": "AI · generated",
     "w.aiHow": "How it was made",
     "w.noteTag": "Content note",
@@ -353,6 +357,7 @@ const I18N = {
     "f.ai": "AI 与生成",
     "w.view": "播放",
     "w.full": "全片",
+    "w.lead": "先看这两支 —— 均由 AI 视频模型生成",
     "w.aiTag": "AI · 生成",
     "w.aiHow": "制作方式",
     "w.noteTag": "内容提示",
