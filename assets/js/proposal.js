@@ -465,7 +465,7 @@ const ProposalDoc = (function () {
       box.appendChild(mid);
       const foot = el("div", "cover__foot");
       foot.appendChild(el("span", "", "Ziyan Geng"));
-      foot.appendChild(el("span", "", "MA Communication (AI & Digital Media) · BNU–HKBU UIC"));
+      foot.appendChild(el("span", "", "MA in Communication · BNU–HKBU UIC"));
       box.appendChild(foot);
       sheet.appendChild(box);
     }

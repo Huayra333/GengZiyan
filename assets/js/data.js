@@ -23,7 +23,8 @@ const SITE = {
    ───────────────────────────────────────────── */
 /* ─────────────────────────────────────────────
    WORK GROUPS
-   申请方向是 AI 与数码媒体，所以 AI 一组打头：
+   同时申请「人工智能与数码媒体」和「传媒管理」两个专修：
+   AI 一组仍打头，但提案必须读得出「会做、也会运营」。
    生成式影像 → 实拍手艺 → 商业短视频，三段递进。
    编号用 Ⅰ / Ⅱ / Ⅲ，避免和页面 01–05 的章节号打架。
    ───────────────────────────────────────────── */
@@ -32,8 +33,8 @@ const WORK_GROUPS = [
     id: "ai",
     k: "Ⅰ",
     t: { en: "AIGC experiments", zh: "AIGC 创新实践" },
-    d: { en: "Two films generated frame by frame with a video model — and the format proposal that came out of the same question.",
-         zh: "两支逐帧由视频模型生成的片子，以及由同一个问题长出来的一份节目形态提案。" },
+    d: { en: "Two films generated frame by frame with a video model — and a proposal that asks the next question: how would a format like that actually be run?",
+         zh: "两支逐帧由视频模型生成的片子——以及一份接着追问的提案：这样一档节目，究竟怎么运营？" },
     hint: { en: "Start here", zh: "从这里开始" }
   },
   {
@@ -277,15 +278,15 @@ const I18N = {
     "nav.works": "Works",
     "nav.about": "About",
 
-    "hero.kicker": "Portfolio 2026 — MA application, BNU–HKBU UIC",
+    "hero.kicker": "Portfolio 2026 — MA in Communication, BNU–HKBU UIC",
     "hero.first": "Ziyan",
     "hero.last": "Geng",
-    "hero.role": "Communication · AI & Digital Media",
+    "hero.role": "Communication",
     "hero.lede": "Trained to report, shoot, cut and host. Now testing what happens when a machine can do part of it.",
     "hero.based": "Based in",
     "hero.city": "Zhengzhou, China",
     "hero.status": "Applying for",
-    "hero.value": "MA Communication · 2027",
+    "hero.value": "MA in Communication · 2027 entry",
     "hero.scroll": "Scroll",
 
     "s1.tag": "Statement",
@@ -294,7 +295,7 @@ const I18N = {
     "s1.l3": "the whole story.",
     "s1.p1": "A cǎi-biān-bō degree teaches you where a sentence should land — the breath before it, the weight at the end. It also teaches you that the sentence is only one part of the job: someone still has to find the story, hold the camera, and cut it until it holds.",
     "s1.p2": "Then I started making things with models: a pixel-art news story about a ten-yuan buffet stand, a stick figure running through a train yard and into orbit, a proposal for an interactive drama the audience votes on. The same lesson arrived three times — the tool is fast, the judgement is slow.",
-    "s1.p3": "I am applying to Communication (AI and Digital Media) to put a frame around that instinct: how images and voices persuade, who gets to speak, and what a host is for once a host can be synthetic.",
+    "s1.p3": "I am applying for an MA in Communication because it is the one frame that holds both halves of the work: how images and voices persuade, who gets to speak, and what a host is for once a host can be synthetic — and, on the other side, how a format that works on screen gets planned, budgeted and put in front of the right audience.",
 
     "w.tag": "Selected Works",
     "w.items": "pieces",
@@ -351,8 +352,8 @@ const I18N = {
     "a.t3": "whole crew",
     "a.cap": "Zhengzhou, 2026",
     "a.p1": "I read Broadcasting and Hosting at Henan University of Technology, but the degree is built on cǎi-biān-bō — reporting, editing and hosting trained as one job rather than three. So the four years were never elocution lessons: television camera work, non-linear editing, news writing, audio and Python sat beside the voice training, and every assignment had to be researched, shot, cut and finally presented by the same person.",
-    "a.p2": "That is where the range comes from. I can shoot a documentary feature about the alleys at the foot of the Shang city wall, cut a horror short about a corridor that keeps returning you to the same door, and host the campus newscast — often in the same month, sometimes in the same week.",
-    "a.p3": "Generative tools did not make that range redundant. They made it faster to test an idea, and harder to tell which idea is worth testing — which is exactly the judgement I want a Communication degree to sharpen: how images persuade, who gets to speak, and what a host is for once a host can be synthetic.",
+    "a.p2": "That is where the range comes from. I can shoot a documentary feature about the alleys at the foot of the Shang city wall, cut a horror short about a corridor that keeps returning you to the same door, host the campus newscast — and write the proposal that would put a format like that on a platform: market, format, host, business model, risk. Often in the same month, sometimes in the same week.",
+    "a.p3": "Generative tools did not make that range redundant. They made it faster to test an idea, and harder to tell which idea is worth testing — which is exactly the judgement I want two years to sharpen: how images persuade, who gets to speak, what a host is for once a host can be synthetic — and how a good idea survives a schedule, a budget and an audience it has not won yet.",
     "a.skills": "Capabilities",
     "a.sk1": "Cǎi-biān-bō: report, shoot, edit, host",
     "a.sk2": "TV camera · lighting · audio",
@@ -390,7 +391,7 @@ const I18N = {
     "hero.kicker": "作品集 2026 — 申请 北师香港浸会大学",
     "hero.first": "耿子严",
     "hero.last": "",
-    "hero.role": "传理学 · 人工智能与数码媒体",
+    "hero.role": "传理学",
     "hero.lede": "采、编、播都是自己来。现在想弄清楚，当机器也能做其中一部分，人该站在哪里。",
     "hero.based": "所在地",
     "hero.city": "中国 郑州",
@@ -404,7 +405,7 @@ const I18N = {
     "s1.l3": "故事的全部。",
     "s1.p1": "「采编播」的训练教我一件事：一句话该落在哪里——前面那口气，后面那个重量。它也教我，这句话只是活儿的一部分：还得有人去找故事、去扛机器，把它剪到立得住。",
     "s1.p2": "后来我开始用模型做东西：一个关于十元自助摊位的像素风新闻故事，一个跑过车站和太空的火柴人，一份让观众投票决定剧情的互动剧提案。同一个道理来了三次——工具很快，判断很慢。",
-    "s1.p3": "我申请传理学（人工智能与数码媒体），是想给这种直觉一个框架：影像和声音如何说服人，谁有资格开口，以及当主持人也可以是合成的时候，主持人还剩下什么。",
+    "s1.p3": "我申请传理学，是因为它是唯一能同时装下这两半的框架：一半是影像和声音如何说服人、谁有资格开口、当主持人也可以是合成的时候主持人还剩下什么；另一半是一档节目怎么被策划出来、怎么排期、怎么算钱，又怎么送到对的人面前。做出来，和把它跑起来，是我这两年想同时弄明白的两件事。",
 
     "w.tag": "精选作品",
     "w.items": "件",
@@ -461,8 +462,8 @@ const I18N = {
     "a.t3": "整个组",
     "a.cap": "郑州，2026",
     "a.p1": "我在河南工业大学读播音与主持艺术，但培养方案是「采编播」一体——采、编、播不是三个工种，是同一个人要干完的一件事。所以这四年不只是练声：电视摄影基础、非线性编辑、新闻采访写作、录音、Python 都在课表里，每次作业都要自己采访、自己拍、自己剪，最后自己出镜讲完。",
-    "a.p2": "覆盖面就是这么来的。我能拍一支城墙根下巷子的电视专题，能剪一支总把你送回同一扇门的恐怖短片，也能坐在镜头前播一期校园新闻——常常是同一个月，有时是同一个星期。",
-    "a.p3": "生成工具并没有让这套手艺失效。它让试错变快，也让「哪个想法值得试」更难判断——这正是我想在传理学里练的东西：影像如何说服人，谁有资格开口，以及当主持人也可以是合成的时候，主持人还剩下什么。",
+    "a.p2": "覆盖面就是这么来的。我能拍一支城墙根下巷子的电视专题，能剪一支总把你送回同一扇门的恐怖短片，也能坐在镜头前播一期校园新闻——还能把这样一档节目写成一份提案：市场、形态、主持人、商业模型、风险。常常是同一个月，有时是同一个星期。",
+    "a.p3": "生成工具并没有让这套手艺失效。它让试错变快，也让「哪个想法值得试」更难判断——这正是我想用两年时间练的判断力：影像如何说服人、谁有资格开口、当主持人也可以是合成的时候主持人还剩下什么，以及一个好想法怎么在排期、预算和还没被说服的观众之间活下来。",
     "a.skills": "能力",
     "a.sk1": "采编播一体（采访 · 拍摄 · 剪辑 · 出镜）",
     "a.sk2": "电视摄影 · 布光 · 录音",
