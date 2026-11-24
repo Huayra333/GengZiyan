@@ -23,8 +23,9 @@ const SITE = {
    ───────────────────────────────────────────── */
 /* ─────────────────────────────────────────────
    WORK GROUPS
-   同时申请「人工智能与数码媒体」和「传媒管理」两个专修：
-   AI 一组仍打头，但提案必须读得出「会做、也会运营」。
+   同时申请「人工智能与数码媒体」和「传媒管理」两个专修，
+   所以全站文案只讲一条主线：内容怎么做（craft）与内容怎么活（运营）。
+   任何一个专修的老师读，都能在句子里找到自己的那一半。
    生成式影像 → 实拍手艺 → 商业短视频，三段递进。
    编号用 Ⅰ / Ⅱ / Ⅲ，避免和页面 01–05 的章节号打架。
    ───────────────────────────────────────────── */
@@ -33,23 +34,23 @@ const WORK_GROUPS = [
     id: "ai",
     k: "Ⅰ",
     t: { en: "AIGC experiments", zh: "AIGC 创新实践" },
-    d: { en: "Two films generated frame by frame with a video model — and a proposal that asks the next question: how would a format like that actually be run?",
-         zh: "两支逐帧由视频模型生成的片子——以及一份接着追问的提案：这样一档节目，究竟怎么运营？" },
+    d: { en: "Two films generated frame by frame with a video model — and a proposal that asks the next question: what a format like that costs, who it reaches, and how anyone would keep it running week after week.",
+         zh: "两支逐帧由视频模型生成的片子——以及一份接着追问的提案：这样的节目花多少钱、给谁看、又靠什么一周一周地跑下去。" },
     hint: { en: "Start here", zh: "从这里开始" }
   },
   {
     id: "film",
     k: "Ⅱ",
     t: { en: "Narrative & broadcast", zh: "视听叙事与媒介建构" },
-    d: { en: "A long documentary, a horror short, a campus newscast — the craft the AI work above rests on.",
-         zh: "一支长片专题、一支恐怖短片、一期校园新闻——上面那组 AI 作品靠的就是这些手艺。" }
+    d: { en: "A documentary feature, a horror short, a campus newscast — the craft underneath everything above: find the story, hold the camera, cut it until it holds.",
+         zh: "电视专题、恐怖短片、校园新闻——上面那些尝试底下的手艺：找到故事、扛住机器、把它剪到立得住。" }
   },
   {
     id: "biz",
     k: "Ⅲ",
     t: { en: "Commercial & social", zh: "商业传播与受众触达" },
-    d: { en: "Vertical, one-man, cut for a phone screen.",
-         zh: "竖屏、一个人、为手机屏幕而剪。" }
+    d: { en: "Vertical, one-man, cut for a phone screen — and the first time I had to think about who would actually stop and watch.",
+         zh: "竖屏、一个人、为手机屏幕而剪——也是我第一次不得不去想：到底谁会停下来看。" }
   }
 ];
 
@@ -104,8 +105,8 @@ const WORKS = [
     cover: "assets/script/p01.jpg",
     kicker: { en: "A proposal, not a film", zh: "提案，不是片子" },
     title: { en: "Life, Restart", zh: "人生重启局" },
-    sub: { en: "An AI-assisted interactive drama: a real actor lives a life, the audience votes at every fork, and the model generates the branch that wins.",
-           zh: "AI 辅助的互动剧：真人过一段人生，观众在每个岔口投票，模型生成胜出的那条支线。" },
+    sub: { en: "An AI-assisted interactive drama: a real actor lives a life, the audience votes at every fork, the model generates the winning branch — and the document works out what running it would cost.",
+           zh: "AI 辅助的互动剧：真人过一段人生，观众在每个岔口投票，模型生成胜出的那条支线——提案里同时算清了这样跑起来要花多少钱。" },
     tags: [
       { en: "Format design", zh: "内容架构" },
       { en: "Interactive", zh: "互动叙事" },
@@ -265,7 +266,8 @@ const HOBBIES = [
    ───────────────────────────────────────────── */
 const MARQUEE = [
   "DOCUMENTARY", "REPORT · SHOOT · EDIT", "GENERATIVE IMAGE",
-  "采编播", "AI VIDEO", "SHORT FORM", "影像叙事", "PROMPT AS SHOT LIST"
+  "采编播", "AI VIDEO", "AUDIENCE & MARKET", "影像叙事",
+  "商业模型", "PROMPT AS SHOT LIST"
 ];
 
 /* ─────────────────────────────────────────────
@@ -282,7 +284,7 @@ const I18N = {
     "hero.first": "Ziyan",
     "hero.last": "Geng",
     "hero.role": "Communication",
-    "hero.lede": "Trained to report, shoot, cut and host. Now testing what happens when a machine can do part of it.",
+    "hero.lede": "Trained to report, shoot, cut and host — now learning what it takes to get a good idea made, paid for and actually watched.",
     "hero.based": "Based in",
     "hero.city": "Zhengzhou, China",
     "hero.status": "Applying for",
@@ -294,8 +296,8 @@ const I18N = {
     "s1.l2": "never",
     "s1.l3": "the whole story.",
     "s1.p1": "A cǎi-biān-bō degree teaches you where a sentence should land — the breath before it, the weight at the end. It also teaches you that the sentence is only one part of the job: someone still has to find the story, hold the camera, and cut it until it holds.",
-    "s1.p2": "Then I started making things with models: a pixel-art news story about a ten-yuan buffet stand, a stick figure running through a train yard and into orbit, a proposal for an interactive drama the audience votes on. The same lesson arrived three times — the tool is fast, the judgement is slow.",
-    "s1.p3": "I am applying for an MA in Communication because it is the one frame that holds both halves of the work: how images and voices persuade, who gets to speak, and what a host is for once a host can be synthetic — and, on the other side, how a format that works on screen gets planned, budgeted and put in front of the right audience.",
+    "s1.p2": "Then the work started going two ways at once: a pixel-art news story and a stick figure who runs into orbit, both built frame by frame with a video model — and a proposal for an interactive drama that asks what such a format costs, who would watch it, and what it earns. The same lesson came back each time: the tool makes the making fast; the questions that decide everything — is it worth making, can it keep running — stay slow.",
+    "s1.p3": "I am applying for an MA in Communication because it is the one frame wide enough to hold both halves: how images and voices persuade, who gets to speak, what a host is for once a host can be synthetic — and how a format that works on screen gets costed, scheduled and put in front of an audience that still has to choose it. Making the thing and running the thing are two different skills. The work I want to do sits where they meet.",
 
     "w.tag": "Selected Works",
     "w.items": "pieces",
@@ -314,7 +316,7 @@ const I18N = {
     "f2.tag": "Case Study",
     "f2.kicker": "A programme that doesn't exist yet",
     "f2.title": "Life, Restart",
-    "f2.desc": "A pitch for what may be China's first AI-assisted interactive drama: a real actor lives a life, the audience votes at every fork, and the model generates the branch that wins. One episode a week, five to eight minutes.",
+    "f2.desc": "A pitch for what may be China's first AI-assisted interactive drama: a real actor lives a life, the audience votes at every fork, the model generates the branch that wins — and the document around it works out the market, the budget and the risk. One episode a week, five to eight minutes.",
     "f2.s1t": "The gap",
     "f2.s1d": "Short drama is a 150-billion-yuan market with one limit — you can only watch. Interactive stories fix that, but shooting every branch is unaffordable. Generated video is what makes it affordable.",
     "f2.s2t": "The shape",
@@ -352,18 +354,18 @@ const I18N = {
     "a.t3": "whole crew",
     "a.cap": "Zhengzhou, 2026",
     "a.p1": "I read Broadcasting and Hosting at Henan University of Technology, but the degree is built on cǎi-biān-bō — reporting, editing and hosting trained as one job rather than three. So the four years were never elocution lessons: television camera work, non-linear editing, news writing, audio and Python sat beside the voice training, and every assignment had to be researched, shot, cut and finally presented by the same person.",
-    "a.p2": "That is where the range comes from. I can shoot a documentary feature about the alleys at the foot of the Shang city wall, cut a horror short about a corridor that keeps returning you to the same door, host the campus newscast — and write the proposal that would put a format like that on a platform: market, format, host, business model, risk. Often in the same month, sometimes in the same week.",
-    "a.p3": "Generative tools did not make that range redundant. They made it faster to test an idea, and harder to tell which idea is worth testing — which is exactly the judgement I want two years to sharpen: how images persuade, who gets to speak, what a host is for once a host can be synthetic — and how a good idea survives a schedule, a budget and an audience it has not won yet.",
+    "a.p2": "That is where the range comes from. I can shoot a documentary feature about the alleys at the foot of the Shang city wall, cut a horror short about a corridor that keeps returning you to the same door, host the campus newscast — and write the proposal that would put a format like that on a platform: market, competitors, budget, host, business model, risk. Often in the same month, sometimes in the same week.",
+    "a.p3": "Generative tools did not make that range redundant. They made it faster to test an idea and harder to tell which idea is worth testing, and they changed what a production costs — which changes who can afford to make one at all. That is the judgement I want two years to sharpen: how images persuade and who gets to speak; and how a good idea survives a schedule, a budget and an audience it has not won yet.",
     "a.skills": "Capabilities",
     "a.sk1": "Cǎi-biān-bō: report, shoot, edit, host",
     "a.sk2": "TV camera · lighting · audio",
     "a.sk3": "Non-linear editing · Premiere · AE",
-    "a.sk4": "News writing & script structure",
+    "a.sk4": "News writing · script · structure",
     "a.sk5": "Hosting & voice-over · Mandarin II-A",
     "a.sk6": "AI video & image generation",
     "a.sk7": "Prompt design & storyboarding",
     "a.sk8": "Python (data & automation basics)",
-    "a.sk9": "Programme planning & pitch writing",
+    "a.sk9": "Programme planning · pitch · budget",
     "a.path": "Path",
     "a.tl1t": "Henan University of Technology",
     "a.tl1d": "BA Broadcasting & Hosting Art — cǎi-biān-bō curriculum · minor in Finance · GPA 3.67",
@@ -392,7 +394,7 @@ const I18N = {
     "hero.first": "耿子严",
     "hero.last": "",
     "hero.role": "传理学",
-    "hero.lede": "采、编、播都是自己来。现在想弄清楚，当机器也能做其中一部分，人该站在哪里。",
+    "hero.lede": "采、编、播都是自己来。现在想弄清楚：一个好想法，怎么被做出来、被算清账，再被对的人看到。",
     "hero.based": "所在地",
     "hero.city": "中国 郑州",
     "hero.status": "申请方向",
@@ -404,8 +406,8 @@ const I18N = {
     "s1.l2": "从来不是",
     "s1.l3": "故事的全部。",
     "s1.p1": "「采编播」的训练教我一件事：一句话该落在哪里——前面那口气，后面那个重量。它也教我，这句话只是活儿的一部分：还得有人去找故事、去扛机器，把它剪到立得住。",
-    "s1.p2": "后来我开始用模型做东西：一个关于十元自助摊位的像素风新闻故事，一个跑过车站和太空的火柴人，一份让观众投票决定剧情的互动剧提案。同一个道理来了三次——工具很快，判断很慢。",
-    "s1.p3": "我申请传理学，是因为它是唯一能同时装下这两半的框架：一半是影像和声音如何说服人、谁有资格开口、当主持人也可以是合成的时候主持人还剩下什么；另一半是一档节目怎么被策划出来、怎么排期、怎么算钱，又怎么送到对的人面前。做出来，和把它跑起来，是我这两年想同时弄明白的两件事。",
+    "s1.p2": "后来作品开始往两个方向同时长：一边是像素风的新闻故事、一个跑进太空的火柴人，每一帧都由视频模型生成；一边是一份互动剧提案，追问这样的节目要花多少钱、谁会看、又靠什么挣回来。同一个道理反复出现：工具让「做出来」变快，而真正决定成败的问题——值不值得做、做完能不能跑下去——一直很慢。",
+    "s1.p3": "我申请传理学，是因为它的框架足够宽，能同时装下这两半：一边是影像与声音如何说服人、谁有资格开口、当主持人也可以是合成的时候主持人还剩下什么；另一边是一档节目怎么被算成本、怎么排期、又怎么送到一群还没被说服的观众面前。做出来和跑起来，是两种不同的能力——我想做的事，正好在它们交接的地方。",
 
     "w.tag": "精选作品",
     "w.items": "件",
@@ -424,7 +426,7 @@ const I18N = {
     "f2.tag": "项目拆解",
     "f2.kicker": "一个还不存在的节目",
     "f2.title": "人生重启局",
-    "f2.desc": "一份节目提案：真人演一条人生，观众在每个岔路口投票，模型生成得票最高的那条分支。每周更新一期，单期五到八分钟。",
+    "f2.desc": "一份节目提案：真人演一条人生，观众在每个岔路口投票，模型生成得票最高的那条分支——提案里同时算清了市场、预算和风险。每周更新一期，单期五到八分钟。",
     "f2.s1t": "缺口",
     "f2.s1d": "微短剧是千亿级市场，但有一个限制——你只能看。互动叙事能解决它，可是每条分支都实拍的成本不可承受，生成式视频让成本降了下来。",
     "f2.s2t": "结构",
@@ -462,18 +464,18 @@ const I18N = {
     "a.t3": "整个组",
     "a.cap": "郑州，2026",
     "a.p1": "我在河南工业大学读播音与主持艺术，但培养方案是「采编播」一体——采、编、播不是三个工种，是同一个人要干完的一件事。所以这四年不只是练声：电视摄影基础、非线性编辑、新闻采访写作、录音、Python 都在课表里，每次作业都要自己采访、自己拍、自己剪，最后自己出镜讲完。",
-    "a.p2": "覆盖面就是这么来的。我能拍一支城墙根下巷子的电视专题，能剪一支总把你送回同一扇门的恐怖短片，也能坐在镜头前播一期校园新闻——还能把这样一档节目写成一份提案：市场、形态、主持人、商业模型、风险。常常是同一个月，有时是同一个星期。",
-    "a.p3": "生成工具并没有让这套手艺失效。它让试错变快，也让「哪个想法值得试」更难判断——这正是我想用两年时间练的判断力：影像如何说服人、谁有资格开口、当主持人也可以是合成的时候主持人还剩下什么，以及一个好想法怎么在排期、预算和还没被说服的观众之间活下来。",
+    "a.p2": "覆盖面就是这么来的。我能拍一支城墙根下巷子的电视专题，能剪一支总把你送回同一扇门的恐怖短片，也能坐在镜头前播一期校园新闻——还能把这样一档节目写成一份递得出去的提案：市场、竞品、预算、主持人、商业模型、风险。常常是同一个月，有时是同一个星期。",
+    "a.p3": "生成工具并没有让这套手艺失效。它让试错变快，也让「哪个想法值得试」更难判断；它还改变了制作的成本结构——成本一变，谁能做得起也跟着变。这正是我想用两年时间练的判断力：影像如何说服人、谁有资格开口；以及一个好想法，怎么在排期、预算和还没被说服的观众之间活下来。",
     "a.skills": "能力",
     "a.sk1": "采编播一体（采访 · 拍摄 · 剪辑 · 出镜）",
     "a.sk2": "电视摄影 · 布光 · 录音",
     "a.sk3": "非线性编辑 · Premiere · AE",
-    "a.sk4": "新闻写作与稿件结构",
+    "a.sk4": "新闻写作 · 稿件 · 叙事",
     "a.sk5": "出镜主持与配音 · 普通话二甲",
     "a.sk6": "AI 视频与图像生成",
     "a.sk7": "提示词设计与分镜",
     "a.sk8": "Python（数据处理与自动化）",
-    "a.sk9": "提案写作与节目策划",
+    "a.sk9": "节目策划 · 提案 · 预算",
     "a.path": "经历",
     "a.tl1t": "河南工业大学",
     "a.tl1d": "播音与主持艺术（采编播方向）· 辅修金融 · GPA 3.67",
