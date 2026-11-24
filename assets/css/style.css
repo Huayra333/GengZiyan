@@ -1100,22 +1100,23 @@ html[lang="zh"] .bts__note-d{ font-size:12.5px; line-height:1.95; }
 }
 html[lang="zh"] .about__right .about__lead{ line-height:1.85; }
 
-/* 只留两项硬信息：辅修金融 + 语言。
-   学历与绩点在简历、文书和成绩单里已经有了，页面不再重复一遍。 */
+/* 只留一条：辅修金融。学历、绩点、普通话等级都在简历和成绩单里，页面不重复。
+   只剩一项，所以标签与取值排在同一行，读起来是一句注脚而不是一格表格。 */
 .facts{
-  display:flex; flex-wrap:wrap;
-  gap:clamp(22px,3.4vw,54px);
-  margin:clamp(26px,3vw,42px) 0 0;
-  padding-top:clamp(16px,1.9vw,26px);
+  display:flex; flex-wrap:wrap; align-items:baseline;
+  gap:10px;
+  margin:clamp(24px,2.8vw,38px) 0 0;
+  padding-top:clamp(16px,1.9vw,24px);
   border-top:1px solid var(--line);
 }
+.fact{ display:flex; align-items:baseline; gap:9px; }
 .fact dt{
   font-size:9px; letter-spacing:.2em; text-transform:uppercase;
   color:var(--dimmer); font-weight:500;
 }
 html[lang="zh"] .fact dt{ letter-spacing:.14em; }
 .fact dd{
-  margin:7px 0 0;
+  margin:0;
   font-size:clamp(12.5px,1vw,14.5px);
   line-height:1.45;
   color:var(--ink);
