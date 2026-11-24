@@ -291,13 +291,9 @@ const I18N = {
     "hero.value": "MA in Communication · 2027 entry",
     "hero.scroll": "Scroll",
 
-    "s1.tag": "Statement",
-    "s1.l1": "The voice was",
-    "s1.l2": "never",
-    "s1.l3": "the whole story.",
-    "s1.p1": "A cǎi-biān-bō degree teaches you where a sentence should land — the breath before it, the weight at the end. It also teaches you that the sentence is only one part of the job: someone still has to find the story, hold the camera, and cut it until it holds.",
-    "s1.p2": "Then the work started going two ways at once: a pixel-art news story and a stick figure who runs into orbit, both built frame by frame with a video model — and a proposal for an interactive drama that asks what such a format costs, who would watch it, and what it earns. The same lesson came back each time: the tool makes the making fast; the questions that decide everything — is it worth making, can it keep running — stay slow.",
-    "s1.p3": "I am applying for an MA in Communication because it is the one frame wide enough to hold both halves: how images and voices persuade, who gets to speak, what a host is for once a host can be synthetic — and how a format that works on screen gets costed, scheduled and put in front of an audience that still has to choose it. Making the thing and running the thing are two different skills. The work I want to do sits where they meet.",
+    /* 原来这里有一段 01 自述（The voice was never the whole story）。
+       为了让老师滚过首屏就直接看到作品，整段已撤掉；
+       那段「做出来 vs 跑起来」的话，现在落在 hero.lede 与 a.p2 / a.p3 里。 */
 
     "w.tag": "Selected Works",
     "w.items": "pieces",
@@ -401,13 +397,7 @@ const I18N = {
     "hero.value": "传理学文学硕士 · 2027 入学",
     "hero.scroll": "下滑",
 
-    "s1.tag": "自述",
-    "s1.l1": "声音，",
-    "s1.l2": "从来不是",
-    "s1.l3": "故事的全部。",
-    "s1.p1": "「采编播」的训练教我一件事：一句话该落在哪里——前面那口气，后面那个重量。它也教我，这句话只是活儿的一部分：还得有人去找故事、去扛机器，把它剪到立得住。",
-    "s1.p2": "后来作品开始往两个方向同时长：一边是像素风的新闻故事、一个跑进太空的火柴人，每一帧都由视频模型生成；一边是一份互动剧提案，追问这样的节目要花多少钱、谁会看、又靠什么挣回来。同一个道理反复出现：工具让「做出来」变快，而真正决定成败的问题——值不值得做、做完能不能跑下去——一直很慢。",
-    "s1.p3": "我申请传理学，是因为它的框架足够宽，能同时装下这两半：一边是影像与声音如何说服人、谁有资格开口、当主持人也可以是合成的时候主持人还剩下什么；另一边是一档节目怎么被算成本、怎么排期、又怎么送到一群还没被说服的观众面前。做出来和跑起来，是两种不同的能力——我想做的事，正好在它们交接的地方。",
+    /* 01 自述已撤掉，见上方英文注释 */
 
     "w.tag": "精选作品",
     "w.items": "件",

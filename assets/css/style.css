@@ -521,7 +521,12 @@ html[lang="zh"] .sign__name{ font-family:var(--f-cn); font-style:normal; font-we
 }
 
 /* ══════════ WORKS ══════════ */
-.works{ background:var(--bg-2); }
+.works{
+  background:var(--bg-2);
+  /* 自述段撤掉后，作品紧接跑马灯：这里不再留一个整节的上边距，
+     让「SELECTED works」尽早露头。 */
+  padding-top:clamp(52px, 6.2vw, 96px);
+}
 .works__top{
   display:flex; justify-content:space-between; align-items:flex-end;
   gap:32px; flex-wrap:wrap;
